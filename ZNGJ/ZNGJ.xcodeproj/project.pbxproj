@@ -12,6 +12,11 @@
 		8D14DC271E0CD56C00924FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC251E0CD56C00924FFD /* Main.storyboard */; };
 		8D14DC291E0CD56C00924FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC281E0CD56C00924FFD /* Assets.xcassets */; };
 		8D14DC2C1E0CD56C00924FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC2A1E0CD56C00924FFD /* LaunchScreen.storyboard */; };
+		8D14DC3A1E0CDF0200924FFD /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D14DC371E0CDF0200924FFD /* MOBFoundation.framework */; };
+		8D14DC3B1E0CDF0200924FFD /* MOBFoundationEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D14DC381E0CDF0200924FFD /* MOBFoundationEx.framework */; };
+		8D14DC3C1E0CDF0200924FFD /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D14DC391E0CDF0200924FFD /* SMS_SDK.framework */; };
+		8D14DC3E1E0CDFA700924FFD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */; };
+		8D14DC401E0CDFC900924FFD /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC3F1E0CDFC900924FFD /* Register.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		8D14DC281E0CD56C00924FFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D14DC2B1E0CD56C00924FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D14DC2D1E0CD56C00924FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D14DC371E0CDF0200924FFD /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		8D14DC381E0CDF0200924FFD /* MOBFoundationEx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundationEx.framework; sourceTree = "<group>"; };
+		8D14DC391E0CDF0200924FFD /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = UI/LoginViewController.swift; sourceTree = "<group>"; };
+		8D14DC3F1E0CDFC900924FFD /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Register.swift; path = UI/Register.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D14DC3C1E0CDF0200924FFD /* SMS_SDK.framework in Frameworks */,
+				8D14DC3A1E0CDF0200924FFD /* MOBFoundation.framework in Frameworks */,
+				8D14DC3B1E0CDF0200924FFD /* MOBFoundationEx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +51,7 @@
 		8D14DC151E0CD56C00924FFD = {
 			isa = PBXGroup;
 			children = (
+				8D14DC351E0CDE3C00924FFD /* frameworks */,
 				8D14DC201E0CD56C00924FFD /* ZNGJ */,
 				8D14DC1F1E0CD56C00924FFD /* Products */,
 			);
@@ -54,6 +68,7 @@
 		8D14DC201E0CD56C00924FFD /* ZNGJ */ = {
 			isa = PBXGroup;
 			children = (
+				8D14DC331E0CDE0C00924FFD /* UI */,
 				8D14DC211E0CD56C00924FFD /* AppDelegate.swift */,
 				8D14DC231E0CD56C00924FFD /* ViewController.swift */,
 				8D14DC251E0CD56C00924FFD /* Main.storyboard */,
@@ -62,6 +77,33 @@
 				8D14DC2D1E0CD56C00924FFD /* Info.plist */,
 			);
 			path = ZNGJ;
+			sourceTree = "<group>";
+		};
+		8D14DC331E0CDE0C00924FFD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */,
+				8D14DC3F1E0CDFC900924FFD /* Register.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		8D14DC351E0CDE3C00924FFD /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D14DC361E0CDF0200924FFD /* SMS_SDK */,
+			);
+			name = frameworks;
+			sourceTree = "<group>";
+		};
+		8D14DC361E0CDF0200924FFD /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				8D14DC371E0CDF0200924FFD /* MOBFoundation.framework */,
+				8D14DC381E0CDF0200924FFD /* MOBFoundationEx.framework */,
+				8D14DC391E0CDF0200924FFD /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D14DC3E1E0CDFA700924FFD /* LoginViewController.swift in Sources */,
 				8D14DC241E0CD56C00924FFD /* ViewController.swift in Sources */,
+				8D14DC401E0CDFC900924FFD /* Register.swift in Sources */,
 				8D14DC221E0CD56C00924FFD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +302,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SMS_SDK",
+				);
 				INFOPLIST_FILE = ZNGJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yixiuhz.com.ZNGJ;
@@ -270,6 +318,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SMS_SDK",
+				);
 				INFOPLIST_FILE = ZNGJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yixiuhz.com.ZNGJ;
@@ -297,6 +349,7 @@
 				8D14DC321E0CD56C00924FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
