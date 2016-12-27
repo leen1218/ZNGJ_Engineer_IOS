@@ -16,6 +16,8 @@
 		8D14DC451E11655D00924FFD /* password.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC431E11655D00924FFD /* password.jpg */; };
 		8D14DC461E11655D00924FFD /* user.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC441E11655D00924FFD /* user.jpg */; };
 		8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC471E1166CA00924FFD /* RegisterViewController.swift */; };
+		8D14DC4B1E121CE000924FFD /* box-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC491E121CE000924FFD /* box-checked.png */; };
+		8D14DC4C1E121CE000924FFD /* box-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC4A1E121CE000924FFD /* box-empty.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		8D14DC431E11655D00924FFD /* password.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = password.jpg; sourceTree = "<group>"; };
 		8D14DC441E11655D00924FFD /* user.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user.jpg; sourceTree = "<group>"; };
 		8D14DC471E1166CA00924FFD /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = UI/RegisterViewController.swift; sourceTree = "<group>"; };
+		8D14DC491E121CE000924FFD /* box-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-checked.png"; sourceTree = "<group>"; };
+		8D14DC4A1E121CE000924FFD /* box-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-empty.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 		8D14DC421E11655D00924FFD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8D14DC491E121CE000924FFD /* box-checked.png */,
+				8D14DC4A1E121CE000924FFD /* box-empty.png */,
 				8D14DC431E11655D00924FFD /* password.jpg */,
 				8D14DC441E11655D00924FFD /* user.jpg */,
 			);
@@ -170,6 +176,8 @@
 				8D14DC2C1E0CD56C00924FFD /* LaunchScreen.storyboard in Resources */,
 				8D14DC461E11655D00924FFD /* user.jpg in Resources */,
 				8D14DC291E0CD56C00924FFD /* Assets.xcassets in Resources */,
+				8D14DC4B1E121CE000924FFD /* box-checked.png in Resources */,
+				8D14DC4C1E121CE000924FFD /* box-empty.png in Resources */,
 				8D14DC451E11655D00924FFD /* password.jpg in Resources */,
 				8D14DC271E0CD56C00924FFD /* Main.storyboard in Resources */,
 			);
