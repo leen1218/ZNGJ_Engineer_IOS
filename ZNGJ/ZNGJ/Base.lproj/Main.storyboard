@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="920.79999999999995" y="-543.77811094452773"/>
+            <point key="canvasLocation" x="857" y="-544"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="FFW-5j-kDo">
@@ -187,10 +187,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="authCode" destination="wLt-nP-3zi" id="StY-pS-awW"/>
+                        <outlet property="cellPhone" destination="JMG-uB-OGI" id="gHX-o2-P3c"/>
+                        <outlet property="confirmPassword" destination="hI7-Oa-JGU" id="PE1-Yz-u5D"/>
+                        <outlet property="password" destination="sTe-cP-o1O" id="Qi1-TX-fMr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Mb-fc-Zok" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636" y="-545.57721139430294"/>
+            <point key="canvasLocation" x="1591" y="-545"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tk2-db-SXO">
