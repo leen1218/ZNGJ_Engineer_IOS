@@ -13,7 +13,9 @@
 		8D14DC291E0CD56C00924FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC281E0CD56C00924FFD /* Assets.xcassets */; };
 		8D14DC2C1E0CD56C00924FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC2A1E0CD56C00924FFD /* LaunchScreen.storyboard */; };
 		8D14DC3E1E0CDFA700924FFD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */; };
-		8D14DC401E0CDFC900924FFD /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC3F1E0CDFC900924FFD /* Register.swift */; };
+		8D14DC451E11655D00924FFD /* password.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC431E11655D00924FFD /* password.jpg */; };
+		8D14DC461E11655D00924FFD /* user.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC441E11655D00924FFD /* user.jpg */; };
+		8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC471E1166CA00924FFD /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		8D14DC2B1E0CD56C00924FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D14DC2D1E0CD56C00924FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = UI/LoginViewController.swift; sourceTree = "<group>"; };
-		8D14DC3F1E0CDFC900924FFD /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Register.swift; path = UI/Register.swift; sourceTree = "<group>"; };
+		8D14DC431E11655D00924FFD /* password.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = password.jpg; sourceTree = "<group>"; };
+		8D14DC441E11655D00924FFD /* user.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user.jpg; sourceTree = "<group>"; };
+		8D14DC471E1166CA00924FFD /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = UI/RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 		8D14DC201E0CD56C00924FFD /* ZNGJ */ = {
 			isa = PBXGroup;
 			children = (
+				8D14DC411E11655D00924FFD /* Resource */,
 				8D14DC331E0CDE0C00924FFD /* UI */,
 				8D14DC211E0CD56C00924FFD /* AppDelegate.swift */,
 				8D14DC231E0CD56C00924FFD /* ViewController.swift */,
@@ -74,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */,
-				8D14DC3F1E0CDFC900924FFD /* Register.swift */,
+				8D14DC471E1166CA00924FFD /* RegisterViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -84,6 +89,23 @@
 			children = (
 			);
 			name = frameworks;
+			sourceTree = "<group>";
+		};
+		8D14DC411E11655D00924FFD /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8D14DC421E11655D00924FFD /* images */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		8D14DC421E11655D00924FFD /* images */ = {
+			isa = PBXGroup;
+			children = (
+				8D14DC431E11655D00924FFD /* password.jpg */,
+				8D14DC441E11655D00924FFD /* user.jpg */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +168,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D14DC2C1E0CD56C00924FFD /* LaunchScreen.storyboard in Resources */,
+				8D14DC461E11655D00924FFD /* user.jpg in Resources */,
 				8D14DC291E0CD56C00924FFD /* Assets.xcassets in Resources */,
+				8D14DC451E11655D00924FFD /* password.jpg in Resources */,
 				8D14DC271E0CD56C00924FFD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,8 +184,8 @@
 			files = (
 				8D14DC3E1E0CDFA700924FFD /* LoginViewController.swift in Sources */,
 				8D14DC241E0CD56C00924FFD /* ViewController.swift in Sources */,
-				8D14DC401E0CDFC900924FFD /* Register.swift in Sources */,
 				8D14DC221E0CD56C00924FFD /* AppDelegate.swift in Sources */,
+				8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
