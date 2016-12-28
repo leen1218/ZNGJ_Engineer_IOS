@@ -42,10 +42,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
 		self.authCode.returnKeyType = UIReturnKeyType.done;
 		
 		// 键盘格式
-		self.cellPhone.keyboardType = UIKeyboardType.numberPad;
-		self.password.keyboardType = UIKeyboardType.numberPad;
-		self.confirmPassword.keyboardType = UIKeyboardType.numberPad;
-		self.authCode.keyboardType = UIKeyboardType.numberPad;
+		self.cellPhone.keyboardType = UIKeyboardType.phonePad;
+		self.password.keyboardType = UIKeyboardType.phonePad;
+		self.confirmPassword.keyboardType = UIKeyboardType.phonePad;
+		self.authCode.keyboardType = UIKeyboardType.phonePad;
 		
 		// 开启一键删除操作
 		self.cellPhone.clearsOnBeginEditing = true;

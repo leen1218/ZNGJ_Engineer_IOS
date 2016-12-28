@@ -34,8 +34,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate
 		self.password.returnKeyType = UIReturnKeyType.done;
 		
 		// 键盘格式
-		self.username.keyboardType = UIKeyboardType.numberPad;
-		self.password.keyboardType = UIKeyboardType.numberPad;
+		self.username.keyboardType = UIKeyboardType.phonePad;
+		self.password.keyboardType = UIKeyboardType.phonePad;
 		
 		// 开启一键删除操作
 		self.username.clearsOnBeginEditing = true;
