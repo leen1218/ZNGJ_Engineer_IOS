@@ -96,8 +96,8 @@
                     <navigationItem key="navigationItem" title="登录" id="XnN-it-vH9"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cellphone" destination="YgB-Vu-dFJ" id="Tpo-Ih-kcy"/>
                         <outlet property="password" destination="ELH-ew-Lu5" id="p1g-Bx-X91"/>
-                        <outlet property="username" destination="YgB-Vu-dFJ" id="53t-oM-MrI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

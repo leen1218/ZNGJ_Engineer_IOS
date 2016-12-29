@@ -23,7 +23,7 @@
 -(void) start
 {
 	AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-	//manager.requestSerializer = [AFJSONRequestSerializer serializer];
+	manager.requestSerializer = [AFJSONRequestSerializer serializer];
 	manager.responseSerializer = [AFJSONResponseSerializer serializer];
 	manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/json"];
 	

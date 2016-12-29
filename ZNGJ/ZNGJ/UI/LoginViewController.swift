@@ -8,10 +8,10 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate
+class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 {
 	
-	@IBOutlet weak var username: UITextField!
+	@IBOutlet weak var cellphone: UITextField!
 	@IBOutlet weak var password: UITextField!
 	
 	var currTextField: UITextField!
@@ -26,19 +26,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate
 	func setupTextField()
 	{
 		// delegate 设置
-		self.username.delegate = self
+		self.cellphone.delegate = self
 		self.password.delegate = self
 		
 		// 返回按钮设置
-		self.username.returnKeyType = UIReturnKeyType.done;
+		self.cellphone.returnKeyType = UIReturnKeyType.done;
 		self.password.returnKeyType = UIReturnKeyType.done;
 		
 		// 键盘格式
-		self.username.keyboardType = UIKeyboardType.phonePad;
+		self.cellphone.keyboardType = UIKeyboardType.phonePad;
 		self.password.keyboardType = UIKeyboardType.phonePad;
 		
 		// 开启一键删除操作
-		self.username.clearsOnBeginEditing = true;
+		self.cellphone.clearsOnBeginEditing = true;
 		self.password.clearsOnBeginEditing = true;
 	}
 	
@@ -55,11 +55,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate
 	}
 	
 	@IBAction func login(_ sender: UIButton) {
+		// 1. 检测手机号密码是否为空
+		guard self.cellphone.text != nil && self.password.text != nil else {
+			self.showAlert(title: "验证码错误", message: "验证码不能为空!")
+			return
+		}
+		
+		// 2. 向服务器发送登录请求
+		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_LOGIN)
+		let params:Dictionary<String, String> = ["cellphone":self.cellphone.text!, "password":self.password.text!]
+		request.params = params
+		request.handler = self
+		request.start()
+
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "goRegister" {
 		}
+	}
+	
+	// Request handler protocal
+	func onSuccess(_ response: Any!) {
+		let result_json = response as? Dictionary<String, String>
+		if (result_json != nil) {
+			if (result_json?["msg"] != nil) {
+				let msg = result_json?["msg"]
+				showAlert(title: "请求返回", message: msg!)
+			} else {
+				showAlert(title: "请求失败", message:"请重新发送")
+			}
+		}
+	}
+	func onFailure(_ error: Error!) {
+		showAlert(title: "请求失败", message: "网络请求失败，请重试!")
 	}
 	
 	// 自动登录
@@ -126,6 +155,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate
 		UIView.setAnimationDuration(TimeInterval(movementDuration))
 		self.view.frame = self.view.frame.offsetBy(dx: 0, dy: CGFloat(movement))
 		UIView.commitAnimations()
+	}
+	
+	func showAlert(title: String, message : String)
+	{
+		let alertController = UIAlertController(title: title,
+		                                        message: message,
+		                                        preferredStyle: .alert)
+		let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+			action in
+		})
+		alertController.addAction(okAction)
+		self.present(alertController, animated: true, completion: nil)
 	}
 	
 }

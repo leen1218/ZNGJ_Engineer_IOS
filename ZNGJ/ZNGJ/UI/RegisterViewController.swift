@@ -80,7 +80,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, RequestHand
 		
 		// 3. 向服务器发送注册请求
 		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_REGISTER)
-		let params:Dictionary<String, String> = ["username":self.cellPhone.text!, "password":self.password.text!]
+		let params:Dictionary<String, String> = ["cellphone":self.cellPhone.text!, "password":self.password.text!, "code":self.authCode.text!]
 		request.params = params
 		request.handler = self
 		request.start()
@@ -101,7 +101,26 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, RequestHand
 		request.start()
 	}
 	
-	// adjust view height when keyboard show
+	// Request handler protocal
+	func onSuccess(_ response: Any!) {
+		let result_json = response as? Dictionary<String, String>
+		if (result_json != nil) {
+			if (result_json?["msg"] != nil) {
+				let msg = result_json?["msg"]
+				showAlert(title: "请求返回", message: msg!)
+			} else {
+				showAlert(title: "请求失败", message:"请重新发送")
+			}
+		}
+	}
+	func onFailure(_ error: Error!) {
+		showAlert(title: "请求失败", message: "网络请求失败，请重试!")
+	}
+	
+	
+	/* 
+	TextFeild adjust view height when keyboard show
+	*/
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		// register for keyboard notifications
@@ -171,21 +190,5 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, RequestHand
 		})
 		alertController.addAction(okAction)
 		self.present(alertController, animated: true, completion: nil)
-	}
-	
-	// Request handler protocal
-	func onSuccess(_ response: Any!) {
-		let result_json = response as? Dictionary<String, String>
-		if (result_json != nil) {
-			if (result_json?["msg"] != nil) {
-				let msg = result_json?["msg"]
-				showAlert(title: "验证码发送", message: msg!)
-			} else {
-				showAlert(title: "验证码失败", message:"请重新发送")
-			}
-		}
-	}
-	func onFailure(_ error: Error!) {
-		showAlert(title: "验证码发送失败", message: "请求验证码失败")
 	}
 }
