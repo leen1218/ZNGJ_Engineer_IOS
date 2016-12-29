@@ -11,7 +11,8 @@
 
 typedef enum {
 	ENUM_REQUEST_REGISTER = 0,
-	ENUM_REQUEST_LOGIN
+	ENUM_REQUEST_LOGIN,
+	ENUM_REQUEST_AUTHENTICATION_CODE
 } EnumRequestType;
 
 @interface ZNGJRequestManager : NSObject

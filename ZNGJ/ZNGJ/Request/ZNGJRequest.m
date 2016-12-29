@@ -25,7 +25,7 @@
 	AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
 	//manager.requestSerializer = [AFJSONRequestSerializer serializer];
 	manager.responseSerializer = [AFJSONResponseSerializer serializer];
-	manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+	manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/json"];
 	
 	switch (self.requestType) {
 		case ENUM_REQUEST_GET:

@@ -9,10 +9,13 @@
 #import "ZNGJRequestManager.h"
 #import "ZNGJRegisterRequest.h"
 #import "ZNGJLoginRequest.h"
+#import "ZNGJAuthenticationCodeRequest.h"
 
 static ZNGJRequestManager* mSharedManager = nil;
 
-NSString* const hostAuthURL = @"https://www.yixiuhz.online/auth/%@";
+//NSString* const hostAuthURL = @"https://www.yixiuhz.online/auth/%@";
+NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";
+//NSString* const hostAuthURL = @"http://localhost:7600/auth/%@";
 
 @interface ZNGJRequestManager()
 
@@ -40,6 +43,10 @@ NSString* const hostAuthURL = @"https://www.yixiuhz.online/auth/%@";
 		case ENUM_REQUEST_LOGIN:
 			request = [[ZNGJLoginRequest alloc] init];
 			request.method = [NSString stringWithFormat:hostAuthURL, @"login"];
+			break;
+		case ENUM_REQUEST_AUTHENTICATION_CODE:
+			request = [[ZNGJAuthenticationCodeRequest alloc] init];
+			request.method = [NSString stringWithFormat:hostAuthURL, @"message_auth"];
 			break;
 		default:
 			break;

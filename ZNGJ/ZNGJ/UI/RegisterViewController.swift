@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RegisterViewController: UIViewController, UITextFieldDelegate
+class RegisterViewController: UIViewController, UITextFieldDelegate, RequestHandler
 {
 	
 	@IBOutlet weak var cellPhone: UITextField!
@@ -66,11 +66,39 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
 	}
 	
 	@IBAction func register(_ sender: UIButton) {
-		// TODO : HTTP request to register
+		// 1. 检验密码是否一致
+		guard self.password.text! == self.confirmPassword.text! else {
+			self.showAlert(title: "密码不一致", message: "您两次输入的密码不一致，请确认！")
+			return
+		}
+		
+		// 2. 检测code是否为空
+		guard self.authCode.text != nil else {
+			self.showAlert(title: "验证码错误", message: "验证码不能为空!")
+			return
+		}
+		
+		// 3. 向服务器发送注册请求
+		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_REGISTER)
+		let params:Dictionary<String, String> = ["username":self.cellPhone.text!, "password":self.password.text!]
+		request.params = params
+		request.handler = self
+		request.start()
 	}
 	
 	@IBAction func getAuthCode(_ sender: UIButton) {
-		// TODO : HTTP request to get message code
+		// 1. 检测手机号是否为空
+		guard self.cellPhone.text != nil else {
+			self.showAlert(title: "手机号错误", message: "手机号码不能为空!")
+			return
+		}
+		
+		// 2. 向服务器发送注册码请求
+		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_AUTHENTICATION_CODE)
+		let params:Dictionary<String, String> = ["cellphone":self.cellPhone.text!]
+		request.params = params
+		request.handler = self
+		request.start()
 	}
 	
 	// adjust view height when keyboard show
@@ -131,5 +159,33 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
 		UIView.setAnimationDuration(TimeInterval(movementDuration))
 		self.view.frame = self.view.frame.offsetBy(dx: 0, dy: CGFloat(movement))
 		UIView.commitAnimations()
+	}
+	
+	func showAlert(title: String, message : String)
+	{
+		let alertController = UIAlertController(title: title,
+		                                        message: message,
+		                                        preferredStyle: .alert)
+		let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+			action in
+		})
+		alertController.addAction(okAction)
+		self.present(alertController, animated: true, completion: nil)
+	}
+	
+	// Request handler protocal
+	func onSuccess(_ response: Any!) {
+		let result_json = response as? Dictionary<String, String>
+		if (result_json != nil) {
+			if (result_json?["msg"] != nil) {
+				let msg = result_json?["msg"]
+				showAlert(title: "验证码发送", message: msg!)
+			} else {
+				showAlert(title: "验证码失败", message:"请重新发送")
+			}
+		}
+	}
+	func onFailure(_ error: Error!) {
+		showAlert(title: "验证码发送失败", message: "请求验证码失败")
 	}
 }

@@ -28,6 +28,7 @@
 		8D14DC7A1E13E9E500924FFD /* ZNGJLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC751E13E9E500924FFD /* ZNGJLoginRequest.m */; };
 		8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC771E13E9E500924FFD /* ZNGJRegisterRequest.m */; };
 		8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC791E13E9E500924FFD /* ZNGJRequest.m */; };
+		8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		8D14DC781E13E9E500924FFD /* ZNGJRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJRequest.h; sourceTree = "<group>"; };
 		8D14DC791E13E9E500924FFD /* ZNGJRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJRequest.m; sourceTree = "<group>"; };
 		8D14DC8F1E13F69E00924FFD /* ZNGJ-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZNGJ-Bridging-Header.h"; sourceTree = "<group>"; };
+		8D14DC901E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAuthenticationCodeRequest.h; sourceTree = "<group>"; };
+		8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJAuthenticationCodeRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 		8D14DC671E13E95600924FFD /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				8D14DC901E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.h */,
+				8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */,
 				8D14DC741E13E9E500924FFD /* ZNGJLoginRequest.h */,
 				8D14DC751E13E9E500924FFD /* ZNGJLoginRequest.m */,
 				8D14DC761E13E9E500924FFD /* ZNGJRegisterRequest.h */,
@@ -272,6 +277,7 @@
 				8D14DC731E13E9D900924FFD /* ZNGJRequestManager.m in Sources */,
 				8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */,
 				8D14DC5D1E12889200924FFD /* AFSecurityPolicy.m in Sources */,
+				8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */,
 				8D14DC5F1E12889200924FFD /* AFURLResponseSerialization.m in Sources */,
 				8D14DC3E1E0CDFA700924FFD /* LoginViewController.swift in Sources */,
 				8D14DC241E0CD56C00924FFD /* ViewController.swift in Sources */,
