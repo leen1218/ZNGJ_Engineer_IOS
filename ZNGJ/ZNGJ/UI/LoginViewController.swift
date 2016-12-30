@@ -115,6 +115,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	// 偏移view适应键盘的弹出高度
 	func keyboardWillShow(_ notif: NSNotification)
 	{
+		if (self.currTextField == nil) {
+			return;
+		}
 		//keyboard will be shown now. depending for which textfield is active, move up or move down the view appropriately
 		if let userInfo = notif.userInfo
 		{

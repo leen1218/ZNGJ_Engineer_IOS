@@ -229,6 +229,7 @@
 				TargetAttributes = {
 					8D14DC1D1E0CD56C00924FFD = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = E29287X37F;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -408,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = E29287X37F;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SMS_SDK",
@@ -425,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = E29287X37F;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SMS_SDK",
