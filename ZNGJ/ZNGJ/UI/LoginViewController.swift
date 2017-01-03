@@ -80,8 +80,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 		let result_json = response as? Dictionary<String, String>
 		if (result_json != nil) {
 			if (result_json?["msg"] != nil) {
-				let msg = result_json?["msg"]
-				showAlert(title: "请求返回", message: msg!)
+				// 到客户管理界面
+				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
+				self.present(mainTBVC, animated: true, completion: {
+				})
 			} else {
 				showAlert(title: "请求失败", message:"请重新发送")
 			}

@@ -29,6 +29,7 @@
 		8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC771E13E9E500924FFD /* ZNGJRegisterRequest.m */; };
 		8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC791E13E9E500924FFD /* ZNGJRequest.m */; };
 		8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */; };
+		8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		8D14DC8F1E13F69E00924FFD /* ZNGJ-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZNGJ-Bridging-Header.h"; sourceTree = "<group>"; };
 		8D14DC901E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAuthenticationCodeRequest.h; sourceTree = "<group>"; };
 		8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJAuthenticationCodeRequest.m; sourceTree = "<group>"; };
+		8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTBViewController.swift; path = UI/MainTBViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			children = (
 				8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */,
 				8D14DC471E1166CA00924FFD /* RegisterViewController.swift */,
+				8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */,
 				8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */,
 				8D14DC5E1E12889200924FFD /* AFURLRequestSerialization.m in Sources */,
+				8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
