@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="857" y="-544"/>
         </scene>
-        <!--View Controller-->
+        <!--My Setting View Controller-->
         <scene sceneID="rOm-Ob-5HG">
             <objects>
-                <viewController id="l6b-WV-QzK" sceneMemberID="viewController">
+                <viewController id="l6b-WV-QzK" customClass="MySettingViewController" customModule="ZNGJ" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wW3-4U-l8Q"/>
                         <viewControllerLayoutGuide type="bottom" id="0zR-Tp-SMF"/>
@@ -132,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="1978" y="851"/>
         </scene>
-        <!--View Controller-->
+        <!--Weixiu View Controller-->
         <scene sceneID="1tK-rR-L78">
             <objects>
-                <viewController id="ScM-KP-Uph" sceneMemberID="viewController">
+                <viewController id="ScM-KP-Uph" customClass="WeixiuViewController" customModule="ZNGJ" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tws-25-xAh"/>
                         <viewControllerLayoutGuide type="bottom" id="X9d-8b-yVt"/>

@@ -30,6 +30,8 @@
 		8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC791E13E9E500924FFD /* ZNGJRequest.m */; };
 		8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */; };
 		8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */; };
+		8DEBA4581E1E1908009599F6 /* WeixiuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */; };
+		8DEBA45C1E1E1950009599F6 /* MySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,9 @@
 		8D14DC901E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAuthenticationCodeRequest.h; sourceTree = "<group>"; };
 		8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJAuthenticationCodeRequest.m; sourceTree = "<group>"; };
 		8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTBViewController.swift; path = UI/MainTBViewController.swift; sourceTree = "<group>"; };
+		8DEBA4561E1DCE50009599F6 /* ZNGJ.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZNGJ.entitlements; sourceTree = "<group>"; };
+		8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeixiuViewController.swift; path = UI/WeixiuViewController.swift; sourceTree = "<group>"; };
+		8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySettingViewController.swift; path = UI/MySettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +109,7 @@
 		8D14DC201E0CD56C00924FFD /* ZNGJ */ = {
 			isa = PBXGroup;
 			children = (
+				8DEBA4561E1DCE50009599F6 /* ZNGJ.entitlements */,
 				8D14DC671E13E95600924FFD /* Request */,
 				8D14DC621E128A6300924FFD /* Manager */,
 				8D14DC411E11655D00924FFD /* Resource */,
@@ -125,6 +131,8 @@
 				8D14DC3D1E0CDFA700924FFD /* LoginViewController.swift */,
 				8D14DC471E1166CA00924FFD /* RegisterViewController.swift */,
 				8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */,
+				8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */,
+				8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -233,7 +241,12 @@
 					8D14DC1D1E0CD56C00924FFD = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = E29287X37F;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -278,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D14DC7A1E13E9E500924FFD /* ZNGJLoginRequest.m in Sources */,
+				8DEBA4581E1E1908009599F6 /* WeixiuViewController.swift in Sources */,
 				8D14DC731E13E9D900924FFD /* ZNGJRequestManager.m in Sources */,
 				8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */,
 				8D14DC5D1E12889200924FFD /* AFSecurityPolicy.m in Sources */,
@@ -291,6 +305,7 @@
 				8D14DC5C1E12889200924FFD /* AFNetworkReachabilityManager.m in Sources */,
 				8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */,
 				8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */,
+				8DEBA45C1E1E1950009599F6 /* MySettingViewController.swift in Sources */,
 				8D14DC5E1E12889200924FFD /* AFURLRequestSerialization.m in Sources */,
 				8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */,
 			);
@@ -413,6 +428,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ZNGJ/ZNGJ.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: En Li (839F9ZYDG4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = E29287X37F;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -422,6 +440,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yixiuhz.com.ZNGJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5ed59760-51b6-42d8-9a0a-2090b71354ed";
+				PROVISIONING_PROFILE_SPECIFIER = pushNotification;
 				SWIFT_OBJC_BRIDGING_HEADER = "ZNGJ/ZNGJ-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -431,7 +451,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = E29287X37F;
+				CODE_SIGN_ENTITLEMENTS = ZNGJ/ZNGJ.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SMS_SDK",
