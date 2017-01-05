@@ -32,6 +32,7 @@
 		8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */; };
 		8DEBA4581E1E1908009599F6 /* WeixiuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */; };
 		8DEBA45C1E1E1950009599F6 /* MySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */; };
+		8DEBA45F1E1E2577009599F6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DEBA45E1E1E2577009599F6 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		8DEBA4561E1DCE50009599F6 /* ZNGJ.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZNGJ.entitlements; sourceTree = "<group>"; };
 		8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeixiuViewController.swift; path = UI/WeixiuViewController.swift; sourceTree = "<group>"; };
 		8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MySettingViewController.swift; path = UI/MySettingViewController.swift; sourceTree = "<group>"; };
+		8DEBA45E1E1E2577009599F6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DEBA45F1E1E2577009599F6 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +98,7 @@
 				8D14DC351E0CDE3C00924FFD /* frameworks */,
 				8D14DC201E0CD56C00924FFD /* ZNGJ */,
 				8D14DC1F1E0CD56C00924FFD /* Products */,
+				8DEBA45D1E1E2577009599F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +210,14 @@
 				8D14DC791E13E9E500924FFD /* ZNGJRequest.m */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		8DEBA45D1E1E2577009599F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DEBA45E1E1E2577009599F6 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

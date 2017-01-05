@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 {
@@ -79,8 +80,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	func onSuccess(_ response: Any!) {
 		let result_json = response as? Dictionary<String, String>
 		if (result_json != nil) {
-			if (result_json?["msg"] != nil) {
-				// 到客户管理界面
+			if (result_json?["status"] != nil && result_json?["status"] == "200") {
+				
+				// 1. 登录成功， 注册推送
+				self.registerDeviceForPushNotification()
+				
+				// 2. 到客户管理界面
 				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
 				self.present(mainTBVC, animated: true, completion: {
 				})
@@ -91,6 +96,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	}
 	func onFailure(_ error: Error!) {
 		showAlert(title: "请求失败", message: "网络请求失败，请重试!")
+	}
+	
+	func registerDeviceForPushNotification()
+	{
+		let application = UIApplication.shared
+		// iOS 10 support
+		if #available(iOS 10, *) {
+			UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+			application.registerForRemoteNotifications()
+		} // iOS 9 support
+		else if #available(iOS 9, *) {
+			UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+			UIApplication.shared.registerForRemoteNotifications()
+		} // iOS 8 support
+		else if #available(iOS 8, *) {
+			UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+			UIApplication.shared.registerForRemoteNotifications()
+		}
+			// iOS 7 support
+		else {
+			application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+		}
 	}
 	
 	// 自动登录

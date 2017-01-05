@@ -18,35 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
-		if #available(iOS 10.0, *) {
-			let center = UNUserNotificationCenter.current()
-			center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-				
-				// Enable or disable features based on authorization.
-				if granted == true
-				{
-					print("Allow")
-					UIApplication.shared.registerForRemoteNotifications()
-				}
-				else
-				{
-					print("Don't Allow")
-				}
-			}
-		} else {
-			let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-			let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-			
-			application.registerUserNotificationSettings(pushNotificationSettings)
-			application.registerForRemoteNotifications()
-		}
-		
 		return true
 	}
 	
 	// Get Device Token
 	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-		print("device token = \(deviceToken)")
+		// Convert token to string
+		let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+		
+		// Print it to console
+		print("APNs device token: \(deviceTokenString)")
 	}
 	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
 		print(error)
