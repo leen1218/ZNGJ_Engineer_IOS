@@ -85,7 +85,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 				// 1. 登录成功， 注册推送
 				self.registerDeviceForPushNotification()
 				
-				// 2. 到客户管理界面
+				// 2. 更新用户名，密码到本地数据存储
+				UserDefaults.standard.set(self.cellphone.text!, forKey: "cellphone")
+				
+				// 3. 到客户管理界面
 				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
 				self.present(mainTBVC, animated: true, completion: {
 				})

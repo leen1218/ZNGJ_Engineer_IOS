@@ -10,12 +10,14 @@
 #import "ZNGJRegisterRequest.h"
 #import "ZNGJLoginRequest.h"
 #import "ZNGJAuthenticationCodeRequest.h"
+#import "ZNGJPushDeviceTokenRequest.h"
 
 static ZNGJRequestManager* mSharedManager = nil;
 
 //NSString* const hostAuthURL = @"https://www.yixiuhz.online/auth/%@";
-NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";
+//NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";
 //NSString* const hostAuthURL = @"http://localhost:7600/auth/%@";
+NSString* const hostAuthURL = @"http://10.197.113.112:7600/auth/%@";
 
 @interface ZNGJRequestManager()
 
@@ -47,6 +49,10 @@ NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";
 		case ENUM_REQUEST_AUTHENTICATION_CODE:
 			request = [[ZNGJAuthenticationCodeRequest alloc] init];
 			request.method = [NSString stringWithFormat:hostAuthURL, @"message_auth"];
+			break;
+		case ENUM_REQUEST_REGISTER_DEVICE_TOKEN:
+			request = [[ZNGJPushDeviceTokenRequest alloc] init];
+			request.method = [NSString stringWithFormat:hostAuthURL, @"push_device_token"];
 			break;
 		default:
 			break;

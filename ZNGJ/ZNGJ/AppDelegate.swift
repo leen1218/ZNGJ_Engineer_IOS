@@ -28,6 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// Print it to console
 		print("APNs device token: \(deviceTokenString)")
+		// 2. 向服务器发送登录请求
+		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_REGISTER_DEVICE_TOKEN)
+		var cellphone:String? = UserDefaults.standard.string(forKey: "cellphone")
+		if (cellphone == nil) {
+			cellphone = "13616549781"
+		}
+		let params:Dictionary<String, String> = ["cellphone":cellphone!, "devicetoken":deviceTokenString]
+		request.params = params
+		request.handler = nil
+		request.start()
 	}
 	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
 		print(error)
