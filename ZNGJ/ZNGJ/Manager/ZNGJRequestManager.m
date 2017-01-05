@@ -15,9 +15,9 @@
 static ZNGJRequestManager* mSharedManager = nil;
 
 //NSString* const hostAuthURL = @"https://www.yixiuhz.online/auth/%@";
-//NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";
+NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";
 //NSString* const hostAuthURL = @"http://localhost:7600/auth/%@";
-NSString* const hostAuthURL = @"http://10.197.113.112:7600/auth/%@";
+//NSString* const hostAuthURL = @"http://10.197.113.112:7600/auth/%@";
 
 @interface ZNGJRequestManager()
 
