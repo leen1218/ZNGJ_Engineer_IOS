@@ -13,6 +13,9 @@ class PlacemarkViewController: UITableViewController {
     var placemark: CLPlacemark!
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
         // Get the thoroughfare table cell and set the detail text to show the thoroughfare.
         var cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))
         cell?.detailTextLabel?.text = self.placemark.thoroughfare

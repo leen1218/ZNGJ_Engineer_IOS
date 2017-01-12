@@ -43,7 +43,13 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         guard userLocation.coordinate.latitude != 0.0 && userLocation.coordinate.longitude != 0.0 else {
             return
         }
-        let once = { self.mapView.setCenter(userLocation.coordinate, animated: true) }()
+        //let once = { self.mapView.setCenter(userLocation.coordinate, animated: true) }()
+        let once = {
+            
+            let span = MKCoordinateSpanMake(0.005, 0.005)
+            let region = MKCoordinateRegionMake(userLocation.coordinate, span)
+            self.mapView.setRegion(region, animated: true)
+        }()
         _ = once
         
         
