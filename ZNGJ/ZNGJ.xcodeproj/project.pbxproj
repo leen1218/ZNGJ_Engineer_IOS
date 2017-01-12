@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D482C701E2782FD00246B2E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D482C6F1E2782FD00246B2E /* MapKit.framework */; };
+		6DD0A01B1E279D15002F837D /* PlacemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0A01A1E279D15002F837D /* PlacemarkViewController.swift */; };
+		6DD0A01D1E27B4FD002F837D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD0A01C1E27B4FD002F837D /* CoreLocation.framework */; };
 		8D14DC221E0CD56C00924FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC211E0CD56C00924FFD /* AppDelegate.swift */; };
 		8D14DC241E0CD56C00924FFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC231E0CD56C00924FFD /* ViewController.swift */; };
 		8D14DC271E0CD56C00924FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D14DC251E0CD56C00924FFD /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D482C6F1E2782FD00246B2E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6DD0A01A1E279D15002F837D /* PlacemarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacemarkViewController.swift; path = UI/PlacemarkViewController.swift; sourceTree = "<group>"; };
+		6DD0A01C1E27B4FD002F837D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8D14DC1E1E0CD56C00924FFD /* ZNGJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZNGJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D14DC211E0CD56C00924FFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D14DC231E0CD56C00924FFD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DD0A01D1E27B4FD002F837D /* CoreLocation.framework in Frameworks */,
+				6D482C701E2782FD00246B2E /* MapKit.framework in Frameworks */,
 				8DEBA45F1E1E2577009599F6 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +148,7 @@
 				8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */,
 				8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */,
 				8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */,
+				6DD0A01A1E279D15002F837D /* PlacemarkViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -220,6 +229,8 @@
 		8DEBA45D1E1E2577009599F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DD0A01C1E27B4FD002F837D /* CoreLocation.framework */,
+				6D482C6F1E2782FD00246B2E /* MapKit.framework */,
 				8DEBA45E1E1E2577009599F6 /* UserNotifications.framework */,
 			);
 			name = Frameworks;
@@ -326,6 +337,7 @@
 				8DEBA45C1E1E1950009599F6 /* MySettingViewController.swift in Sources */,
 				8D14DC5E1E12889200924FFD /* AFURLRequestSerialization.m in Sources */,
 				8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */,
+				6DD0A01B1E279D15002F837D /* PlacemarkViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +461,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZNGJ/ZNGJ.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: En Li (839F9ZYDG4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = E29287X37F;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SMS_SDK",
@@ -472,7 +484,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZNGJ/ZNGJ.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = E29287X37F;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SMS_SDK",
