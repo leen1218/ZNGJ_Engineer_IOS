@@ -100,7 +100,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 				self.registerDeviceForPushNotification()
 				
 				// 2. 更新用户名，密码到本地数据存储
-				UserDefaults.standard.set(self.cellphone.text!, forKey: "cellphone")
+				UserDefaults.standard.set(self.cellphone.text!, forKey: "username")
+				UserDefaults.standard.set(self.password.text!, forKey: "password")
 				
 				// 3. 到客户管理界面
 				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
