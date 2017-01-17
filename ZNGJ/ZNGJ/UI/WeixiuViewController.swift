@@ -10,8 +10,19 @@ import Foundation
 import MapKit
 
 class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    
+	
+	// 今日维修信息
+	@IBOutlet weak var onlineHours: UILabel!
+	@IBOutlet weak var orderCount: UILabel!
+	@IBOutlet weak var todaysPayment: UILabel!
+	@IBOutlet weak var dealRatio: UILabel!
+	
+	@IBAction func showTodayOrders(_ sender: UIButton) {
+		
+	}
+	
     // map related stuffs
+
     
     let verticalSpan = 0.005
     let horizontalSpan = 0.005
@@ -43,11 +54,11 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "pushToDetail" else {
+        guard segue.identifier == "showReservedOrders" else {
             return
         }
-        let desController = segue.destination as? PlacemarkViewController
-        desController?.placemark = self.placeMark
+		
+		// Prepare Order Data To Reserved Orders TVB
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

@@ -22,6 +22,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 		
 		// 设置文本框格式
 		self.setupTextField()
+		
+		// 点击空白取消键盘
+		self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:))))
 	}
 	
 	func setupTextField()
@@ -55,10 +58,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 		return true
 	}
 	
+	func handleSingleTap(_ sender: UITapGestureRecognizer) {
+		if sender.state == .ended {
+			if self.currTextField != nil {
+				self.currTextField.resignFirstResponder()
+			} else {
+				return
+			}
+		}
+		sender.cancelsTouchesInView = false
+	}
+	
 	@IBAction func login(_ sender: UIButton) {
 		// 1. 检测手机号密码是否为空
-		guard self.cellphone.text != nil && self.password.text != nil else {
-			self.showAlert(title: "验证码错误", message: "验证码不能为空!")
+		guard self.cellphone.text != "" && self.password.text != "" else {
+			self.showAlert(title: "登录失败", message: "用户名或者密码不能为空!")
 			return
 		}
 		
@@ -86,7 +100,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 				self.registerDeviceForPushNotification()
 				
 				// 2. 更新用户名，密码到本地数据存储
-				UserDefaults.standard.set(self.cellphone.text!, forKey: "cellphone")
+				UserDefaults.standard.set(self.cellphone.text!, forKey: "username")
+				UserDefaults.standard.set(self.password.text!, forKey: "password")
 				
 				// 3. 到客户管理界面
 				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
@@ -134,10 +149,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	// adjust view height when keyboard show
 	override func viewWillAppear(_ animated: Bool) {
 		// register for keyboard notifications
-		NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillShow:"), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillHide:"), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-		
-	}
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+	} // Selector("keyboardWillHide:")
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
