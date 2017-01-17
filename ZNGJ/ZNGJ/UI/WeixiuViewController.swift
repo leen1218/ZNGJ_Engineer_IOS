@@ -13,12 +13,19 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     // map related stuffs
     
+    let verticalSpan = 0.005
+    let horizontalSpan = 0.005
+    
     @IBOutlet weak var mapView: MKMapView!
     var locationManager: CLLocationManager!
     var geoCoder: CLGeocoder!
     var placeMark: CLPlacemark!
+    var orderManager: OrderManager!
+    var boundingRegion: MKCoordinateRegion!
+    var localSearch: MKLocalSearch!
+    var userCoordinate: CLLocationCoordinate2D!
+
     
-	
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager = CLLocationManager()
@@ -26,7 +33,13 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.mapView.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.geoCoder = CLGeocoder();
+        orderManager = OrderManager()
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.mapView.removeAnnotations(self.mapView.annotations)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,20 +50,34 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         desController?.placemark = self.placeMark
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
+        if (annotationView == nil) {
+            annotationView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "Pin")
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.canShowCallout = true
+        return annotationView
+    }
     
+
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         guard userLocation.coordinate.latitude != 0.0 && userLocation.coordinate.longitude != 0.0 else {
             return
         }
+        self.userCoordinate = userLocation.coordinate
         //let once = { self.mapView.setCenter(userLocation.coordinate, animated: true) }()
-        let once = {
+        //let once = {
             
-            let span = MKCoordinateSpanMake(0.005, 0.005)
+            let span = MKCoordinateSpanMake(horizontalSpan, verticalSpan)
             let region = MKCoordinateRegionMake(userLocation.coordinate, span)
             self.mapView.setRegion(region, animated: true)
-        }()
-        _ = once
+        
+        //}()
+        //_ = once
         
         
         self.geoCoder.reverseGeocodeLocation(self.mapView.userLocation.location!, completionHandler: { (placemarks, error) -> Void in
@@ -61,6 +88,9 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 self.placeMark = placemarks[0]
             }
         })
+        
+        self.searchAndShowAddress(addressString: self.orderManager.orderList[0].orderAddress)
+        self.searchAndShowAddress(addressString: self.orderManager.orderList[1].orderAddress)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
@@ -78,6 +108,46 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
     }
     
+    
+     // search related method
+    func searchAndShowAddress(addressString: String) {
+        if ((self.localSearch != nil) && self.localSearch.isSearching) {
+            self.localSearch.cancel()
+        }
+        
+        let newRegion = MKCoordinateRegion.init(center: self.userCoordinate, span: MKCoordinateSpan.init(latitudeDelta: horizontalSpan, longitudeDelta: verticalSpan))
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = addressString
+        request.region = newRegion
+        let completionHandler = { (response: MKLocalSearchResponse?, error: Error?) -> Void in
+            if (error != nil) {
+                // error handling
+                
+            } else {
+                
+                self.boundingRegion = response?.boundingRegion
+                self.addAnnotation(response?.mapItems[0])
+            }
+        }
+        
+        if (self.localSearch != nil) {
+            self.localSearch = nil;
+        }
+        self.localSearch = MKLocalSearch.init(request: request)
+        self.localSearch.start(completionHandler: completionHandler)
+    }
+    
+    func addAnnotation(_ mapItem: MKMapItem?) {
+        guard let mapItem = mapItem else {
+            return
+        }
+        let annotation = OrderAnnotation(mapItem.placemark.location!.coordinate, title: mapItem.name!, subtitle: "")
+        self.mapView.addAnnotation(annotation)
+    }
+    
+
+
+
     
     /*
  
