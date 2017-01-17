@@ -38,6 +38,7 @@
 		8DEBA45F1E1E2577009599F6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DEBA45E1E1E2577009599F6 /* UserNotifications.framework */; };
 		8DEBA4621E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4611E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m */; };
 		8DEBA4641E2E45FC009599F6 /* ReservedOrdersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */; };
+		8DEBA4661E2E4784009599F6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4651E2E4784009599F6 /* OrderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		8DEBA4601E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJPushDeviceTokenRequest.h; sourceTree = "<group>"; };
 		8DEBA4611E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJPushDeviceTokenRequest.m; sourceTree = "<group>"; };
 		8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservedOrdersTVC.swift; path = UI/ReservedOrdersTVC.swift; sourceTree = "<group>"; };
+		8DEBA4651E2E4784009599F6 /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderViewController.swift; path = UI/OrderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */,
 				6DD0A01A1E279D15002F837D /* PlacemarkViewController.swift */,
 				8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */,
+				8DEBA4651E2E4784009599F6 /* OrderViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */,
 				8D14DC5F1E12889200924FFD /* AFURLResponseSerialization.m in Sources */,
 				8D14DC3E1E0CDFA700924FFD /* LoginViewController.swift in Sources */,
+				8DEBA4661E2E4784009599F6 /* OrderViewController.swift in Sources */,
 				8D14DC241E0CD56C00924FFD /* ViewController.swift in Sources */,
 				8D14DC5B1E12889200924FFD /* AFHTTPSessionManager.m in Sources */,
 				8DEBA4641E2E45FC009599F6 /* ReservedOrdersTVC.swift in Sources */,

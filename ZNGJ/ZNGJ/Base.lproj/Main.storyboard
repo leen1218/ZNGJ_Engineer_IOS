@@ -266,6 +266,33 @@
             </objects>
             <point key="canvasLocation" x="2759" y="123"/>
         </scene>
+        <!--Order View Controller-->
+        <scene sceneID="KMP-r6-GTO">
+            <objects>
+                <viewController storyboardIdentifier="OrderDetails" id="Bo8-AL-2wq" customClass="OrderViewController" customModule="ZNGJ" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mvh-XN-16R"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mbp-WG-J1b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vl0-VP-WbJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="这是订单详细界面，用户显示各种状态的订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4J-LC-dfW">
+                                <rect key="frame" x="14" y="244" width="347" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qn7-el-QUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3870" y="544"/>
+        </scene>
         <!--MainTB View Controller-->
         <scene sceneID="D8I-iw-abw">
             <objects>
