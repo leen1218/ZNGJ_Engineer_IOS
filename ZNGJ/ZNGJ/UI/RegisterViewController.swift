@@ -25,6 +25,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, RequestHand
 		
 		// 设置文本框格式
 		self.setupTextField()
+		
+		// 点击空白取消键盘
+		self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:))))
 	}
 	
 	func setupTextField()
@@ -63,6 +66,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, RequestHand
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
 		return true
+	}
+	
+	func handleSingleTap(_ sender: UITapGestureRecognizer) {
+		if sender.state == .ended {
+			if self.currTextField != nil {
+				self.currTextField.resignFirstResponder()
+			} else {
+				return
+			}
+		}
+		sender.cancelsTouchesInView = false
 	}
 	
 	@IBAction func register(_ sender: UIButton) {
