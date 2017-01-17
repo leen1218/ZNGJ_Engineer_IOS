@@ -39,11 +39,11 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showTodayOrders" else {
+        guard segue.identifier == "showReservedOrders" else {
             return
         }
 		
-		// Prepare Order Data
+		// Prepare Order Data To Reserved Orders TVB
     }
     
     

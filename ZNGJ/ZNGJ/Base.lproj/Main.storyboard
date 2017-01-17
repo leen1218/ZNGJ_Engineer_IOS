@@ -214,7 +214,7 @@
                                 </state>
                                 <connections>
                                     <action selector="showTodayOrders:" destination="ScM-KP-Uph" eventType="touchUpInside" id="7tg-qi-9Fn"/>
-                                    <segue destination="Teg-YL-VIK" kind="show" identifier="showTodayOrders" action="showDetailViewController:sender:" id="RKE-hg-Pz2"/>
+                                    <segue destination="o6v-0h-Veu" kind="show" identifier="showReservedOrders" id="4r0-qN-sp9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-Ej-8QY">
@@ -238,32 +238,33 @@
             </objects>
             <point key="canvasLocation" x="1978.4000000000001" y="122.78860569715144"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="huB-pl-RZh">
+        <!--Reserved OrdersTVC-->
+        <scene sceneID="dNr-kK-VM7">
             <objects>
-                <viewController id="Teg-YL-VIK" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZzB-rl-Yx6"/>
-                        <viewControllerLayoutGuide type="bottom" id="opN-iH-QnN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dtq-gh-AWv">
+                <tableViewController id="o6v-0h-Veu" customClass="ReservedOrdersTVC" customModule="ZNGJ" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aHT-B7-96X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="这是已接订单显示列表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yy2-Ve-Bbt">
-                                <rect key="frame" x="100" y="312" width="174" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jaB-lr-uTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JYg-KA-Vuf">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JYg-KA-Vuf" id="ovn-Gz-Iy3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="o6v-0h-Veu" id="D4Q-CT-g8C"/>
+                            <outlet property="delegate" destination="o6v-0h-Veu" id="c2T-gg-Kay"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yDy-mw-sRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2983" y="123"/>
+            <point key="canvasLocation" x="2759" y="123"/>
         </scene>
         <!--MainTB View Controller-->
         <scene sceneID="D8I-iw-abw">
