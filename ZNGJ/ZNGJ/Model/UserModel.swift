@@ -31,7 +31,31 @@ class UserModel
 	
 	func setup(data:Dictionary<String, Any>)
 	{
+		let orderReserved = data["orderReserved"] as? Int
+		guard orderReserved != nil else {
+			return
+		}
+		self.orderCountOfReserved = orderReserved
 		
+		let orderReservedOfToday = data["orderReservedOfToday"] as? Int
+		guard orderReservedOfToday != nil else {
+			return
+		}
+		self.orderCountOfToday = orderReservedOfToday
+		
+		let payments = data["todaysPayment"] as? Float
+		guard payments != nil else {
+			return
+		}
+		self.todaysPayment = payments
+		
+		let ratio = data["dealRatio"] as? Int
+		guard ratio != nil else {
+			return
+		}
+		self.dealRatio = ratio
+		
+		// Orders
 	}
 	
 	var orderManager:OrderManager!
