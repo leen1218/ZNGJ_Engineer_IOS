@@ -171,7 +171,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 synchronizd(self.searchLock) {
                     self.searchCompleteHandler()
                 }
-                
+                Logger.logToConsole("Search FAILED. Address \(order.orderAddress) with index \(self.searchReturnCount)")
             } else {
                 
                 self.boundingRegion = response?.boundingRegion
@@ -180,6 +180,8 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                     self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
                     self.searchCompleteHandler()
                 }
+                Logger.logToConsole("Search SUCCESS. Address \(order.orderAddress) with index \(self.searchReturnCount)")
+                
             }
         }
         
