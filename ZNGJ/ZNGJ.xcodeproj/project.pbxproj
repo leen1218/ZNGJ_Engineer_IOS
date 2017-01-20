@@ -42,6 +42,7 @@
 		8DEBA4621E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4611E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m */; };
 		8DEBA4641E2E45FC009599F6 /* ReservedOrdersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */; };
 		8DEBA4661E2E4784009599F6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4651E2E4784009599F6 /* OrderViewController.swift */; };
+		8DEBA4681E31E77C009599F6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4671E31E77C009599F6 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		8DEBA4611E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJPushDeviceTokenRequest.m; sourceTree = "<group>"; };
 		8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservedOrdersTVC.swift; path = UI/ReservedOrdersTVC.swift; sourceTree = "<group>"; };
 		8DEBA4651E2E4784009599F6 /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderViewController.swift; path = UI/OrderViewController.swift; sourceTree = "<group>"; };
+		8DEBA4671E31E77C009599F6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				6DDDEA9B1E2E539A005409A1 /* Order.swift */,
 				6DDDEA9C1E2E539A005409A1 /* OrderAnnotation.swift */,
 				6DDDEA9D1E2E539A005409A1 /* OrderManager.swift */,
+				8DEBA4671E31E77C009599F6 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				8D14DC221E0CD56C00924FFD /* AppDelegate.swift in Sources */,
 				8D14DC5C1E12889200924FFD /* AFNetworkReachabilityManager.m in Sources */,
 				8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */,
+				8DEBA4681E31E77C009599F6 /* UserModel.swift in Sources */,
 				8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */,
 				8DEBA45C1E1E1950009599F6 /* MySettingViewController.swift in Sources */,
 				8D14DC5E1E12889200924FFD /* AFURLRequestSerialization.m in Sources */,

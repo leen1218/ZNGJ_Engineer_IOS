@@ -157,28 +157,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	
 	// Request handler protocal
 	func onSuccess(_ response: Any!) {
-		let result_json = response as? Dictionary<String, String>
-		if (result_json != nil) {
-			if (result_json?["status"] != nil && result_json?["status"] == "200") {
-				
-				// 1. 登录成功， 注册推送
-				self.registerDeviceForPushNotification()
-				
-				// 2. 更新用户名，密码到本地数据存储
-				if self.rememberPasswordCheck || self.autoLoginCheck {
-					UserDefaults.standard.set(self.cellphone.text!, forKey: "username")
-					UserDefaults.standard.set(self.password.text!, forKey: "password")
-					UserDefaults.standard.set(self.autoLoginCheck ? "TRUE" : "FALSE", forKey: "autoLogin")
-					UserDefaults.standard.set(self.rememberPasswordCheck ? "TRUE" : "FALSE", forKey: "rememberPassword")
-				}
-				
-				// 3. 到客户管理界面
-				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
-				self.present(mainTBVC, animated: true, completion: {
-				})
-			} else {
-				showAlert(title: "请求失败", message:"请重新发送")
+		let result_json = response as! Dictionary<String, Any>
+		if (result_json["status"] != nil && result_json["status"] as! String == "200") {
+			
+			// 1. 登录成功， 注册推送
+			self.registerDeviceForPushNotification()
+			
+			// 2. 更新用户名，密码到本地数据存储
+			if self.rememberPasswordCheck || self.autoLoginCheck {
+				UserDefaults.standard.set(self.cellphone.text!, forKey: "username")
+				UserDefaults.standard.set(self.password.text!, forKey: "password")
+				UserDefaults.standard.set(self.autoLoginCheck ? "TRUE" : "FALSE", forKey: "autoLogin")
+				UserDefaults.standard.set(self.rememberPasswordCheck ? "TRUE" : "FALSE", forKey: "rememberPassword")
 			}
+			
+			// 3. 获取用户数据
+			let user_info = result_json["user_info"] as? Dictionary<String, Any>
+			if user_info != nil {
+				UserModel.SharedUserModel().setup(data: user_info!)
+			}
+			
+			// 4. 到客户管理界面
+			let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
+			self.present(mainTBVC, animated: true, completion: {
+			})
+		} else {
+			showAlert(title: "请求失败", message:"请重新发送")
 		}
 	}
 	func onFailure(_ error: Error!) {
