@@ -150,7 +150,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
      // search related method
     func showAllAddressestoAnnotations() {
         mapAnnotationItems.removeAll()
-        for item in UserModel.SharedUserModel().orderManager.orderList {
+        for item in UserModel.SharedUserModel().orderManager.unreservedOrders {
             searchAndShowAddress(item)
         }
     }
@@ -171,7 +171,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 self.boundingRegion = response?.boundingRegion
                 synchronizd(self.searchLock) {
                     self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
-                    if (self.mapAnnotationItems.count == UserModel.SharedUserModel().orderManager.orderList.count) {
+                    if (self.mapAnnotationItems.count == UserModel.SharedUserModel().orderManager.unreservedOrders.count) {
                         // all annotation returned, we add all to mapview
                         for item in self.mapAnnotationItems.values {
                             self.addAnnotation(item)
