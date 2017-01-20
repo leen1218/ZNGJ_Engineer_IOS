@@ -22,8 +22,6 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 	}
 	
     // map related stuffs
-
-    
     let verticalSpan = 0.005
     let horizontalSpan = 0.005
     
@@ -31,7 +29,6 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var locationManager: CLLocationManager!
     var geoCoder: CLGeocoder!
     var placeMark: CLPlacemark!
-    var orderManager: OrderManager!
     var boundingRegion: MKCoordinateRegion!
     var localSearch: MKLocalSearch!
     var userCoordinate: CLLocationCoordinate2D!
@@ -44,9 +41,25 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.mapView.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.geoCoder = CLGeocoder();
-        orderManager = OrderManager()
-        
+		
+		// 初始化界面
+		self.setupUI()
     }
+	
+	func setupUI()
+	{
+		let onlineTime:Float = Float(UserModel.SharedUserModel().onlineTime!) / 3600.0
+		self.onlineHours.text = String(onlineTime) + "小时"
+		
+		let orderCNT:Int = UserModel.SharedUserModel().orderCount!
+		self.orderCount.text = String(orderCNT)
+		
+		let todaysPay:Float = UserModel.SharedUserModel().todaysPayment!
+		self.todaysPayment.text = String(todaysPay) + "元"
+		
+		let ratio:Int = UserModel.SharedUserModel().dealRatio!
+		self.dealRatio.text = String(ratio) + "%"
+	}
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -100,8 +113,8 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             }
         })
         
-        self.searchAndShowAddress(addressString: self.orderManager.orderList[0].orderAddress)
-        self.searchAndShowAddress(addressString: self.orderManager.orderList[1].orderAddress)
+        self.searchAndShowAddress(addressString: UserModel.SharedUserModel().orderManager.orderList[0].orderAddress)
+        self.searchAndShowAddress(addressString: UserModel.SharedUserModel().orderManager.orderList[1].orderAddress)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
