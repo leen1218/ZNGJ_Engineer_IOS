@@ -91,6 +91,10 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
         
         annotationView?.canShowCallout = true
+        let button = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 40, height: 20))
+        button.setTitle("zngj", for: UIControlState.normal)
+        button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        annotationView?.leftCalloutAccessoryView = button
         return annotationView
     }
     
