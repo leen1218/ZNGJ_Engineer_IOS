@@ -22,4 +22,18 @@ class OrderManager {
         orderList[3].orderId = 3
         orderList[3].orderAddress = "浙江省杭州市元茂大厦"
     }
+	
+	var unreservedOrders: [Order] = []
+	var personalOrders: [Order] = []
+	
+	func addOrderToUnreservedList(order:Order)
+	{
+		self.unreservedOrders.append(order)
+	}
+	
+	func clearOrders()
+	{
+		self.personalOrders.removeAll()
+		self.unreservedOrders.removeAll()
+	}
 }

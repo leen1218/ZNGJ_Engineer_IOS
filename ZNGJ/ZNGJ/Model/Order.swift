@@ -8,7 +8,16 @@
 
 import Foundation
 
-class Order{    
+class Order{
+	
+	init()
+	{
+	}
+	
+	init(order_id:Int, order_address:String) {
+		self.orderId = order_id
+		self.orderAddress = order_address
+	}
     
     var orderId: Int = 0
     var orderAddress: String = ""

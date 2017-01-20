@@ -31,33 +31,44 @@ class UserModel
 	
 	func setup(data:Dictionary<String, Any>)
 	{
-		let orders = data["orders"] as! [Dictionary<String, String>]
+		let personalOrders = data["personalOrders"] as! [Dictionary<String, Any>]
 		
 		// 设置用户数据
-		let orderTotalCount = orders.count
+		let orderTotalCount = personalOrders.count
 		var orderReserved:Int = 0
 		var orderReservedOfToday:Int = 0
 		var payments:Float = 0.0
 		
-		for order in orders {
-			let orderStatus:String? = order["OrderStatus"]
-			guard orderStatus != nil else {
-				continue
-			}
-			if orderStatus! == "进行中" {
+		for personalOrder in personalOrders {
+			let orderStatus:String = personalOrder["OrderStatus"] as! String
+			if orderStatus == "进行中" {
 				orderReserved += 1
-			} else if orderStatus! == "已完成" {
+			} else if orderStatus == "已完成" {
 				orderReservedOfToday += 1
-				let orderPayment = Float(order["ActualAmount"]!)
+				let orderPayment = Float(personalOrder["ActualAmount"] as! String)
 				payments += orderPayment!
 			}
 		}
 		self.orderCountOfToday = orderReservedOfToday
 		self.orderCountOfReserved = orderReserved
-		self.dealRatio = Int(Double(self.orderCountOfReserved!) * 100.0 / Double(orderTotalCount))
+		if orderTotalCount == 0 {
+			self.dealRatio = 100
+		} else {
+			self.dealRatio = Int(Double(self.orderCountOfReserved!) * 100.0 / Double(orderTotalCount))
+		}
 		self.todaysPayment = payments
 		
 		// 设置订单数据
+		let unreservedOrders = data["unreservedOrders"] as! [Dictionary<String, Any>]
+		for unreservedOrder in unreservedOrders {
+			let orderStatus:String = unreservedOrder["OrderStatus"] as! String
+			if orderStatus != "进行中" {
+				continue
+			}
+			let order_id:Int = unreservedOrder["ID"] as! Int
+			let order_address:String = unreservedOrder["Address"] as! String
+			UserModel.SharedUserModel().orderManager.addOrderToUnreservedList(order: Order(order_id: order_id, order_address: order_address))
+		}
 	}
 	
 	var orderManager:OrderManager!
