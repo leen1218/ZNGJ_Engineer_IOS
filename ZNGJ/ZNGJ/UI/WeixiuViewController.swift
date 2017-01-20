@@ -18,7 +18,6 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 	@IBOutlet weak var dealRatio: UILabel!
 	
 	@IBAction func showTodayOrders(_ sender: UIButton) {
-		
 	}
 	
     // map related stuffs
@@ -36,13 +35,16 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     // dictionary for return object from MKLocalSearch
     var mapAnnotationItems = [Int: MKMapItem]()
     
+    var searchLock: NSObject!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         self.mapView.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
-        self.geoCoder = CLGeocoder();
+        self.geoCoder = CLGeocoder()
+        self.searchLock = NSObject()
 		
 		// 初始化界面
 		self.setupUI()
@@ -147,6 +149,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
      // search related method
     func showAllAddressestoAnnotations() {
+        mapAnnotationItems.removeAll()
         for item in UserModel.SharedUserModel().orderManager.orderList {
             searchAndShowAddress(item)
         }
@@ -166,7 +169,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             } else {
                 
                 self.boundingRegion = response?.boundingRegion
-                synchronizd(self) {
+                synchronizd(self.searchLock) {
                     self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
                     if (self.mapAnnotationItems.count == UserModel.SharedUserModel().orderManager.orderList.count) {
                         // all annotation returned, we add all to mapview
