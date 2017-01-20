@@ -32,7 +32,10 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var boundingRegion: MKCoordinateRegion!
     var localSearch: MKLocalSearch!
     var userCoordinate: CLLocationCoordinate2D!
-
+    
+    // dictionary for return object from MKLocalSearch
+    var mapAnnotationItems = [Int: MKMapItem]()
+    var iii = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +76,10 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !annotation.isEqual(mapView.userLocation) else {
+            return nil
+        }
+        
         var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
         if (annotationView == nil) {
             annotationView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "Pin")
@@ -111,8 +118,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             }
         })
         
-        self.searchAndShowAddress(addressString: UserModel.SharedUserModel().orderManager.orderList[0].orderAddress)
-        self.searchAndShowAddress(addressString: UserModel.SharedUserModel().orderManager.orderList[1].orderAddress)
+        self.showAllAddressestoAnnotations()
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
@@ -132,10 +138,19 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     
      // search related method
-    func searchAndShowAddress(addressString: String) {
-        if ((self.localSearch != nil) && self.localSearch.isSearching) {
-            self.localSearch.cancel()
+    func showAllAddressestoAnnotations() {
+        self.iii += 1
+        if (self.iii > 1) {
+            return
         }
+        
+        for item in UserModel.SharedUserModel().orderManager.orderList {
+            searchAndShowAddress(item)
+        }
+    }
+    
+    func searchAndShowAddress(_ order: Order) {
+        let addressString = order.orderAddress
         
         let newRegion = MKCoordinateRegion.init(center: self.userCoordinate, span: MKCoordinateSpan.init(latitudeDelta: horizontalSpan, longitudeDelta: verticalSpan))
         let request = MKLocalSearchRequest()
@@ -148,15 +163,20 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             } else {
                 
                 self.boundingRegion = response?.boundingRegion
-                self.addAnnotation(response?.mapItems[0])
+                synchronizd(self) {
+                    self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
+                    if (self.mapAnnotationItems.count == UserModel.SharedUserModel().orderManager.orderList.count) {
+                        // all annotation returned, we add all to mapview
+                        for item in self.mapAnnotationItems.values {
+                            self.addAnnotation(item)
+                        }
+                    }
+                }
             }
         }
         
-        if (self.localSearch != nil) {
-            self.localSearch = nil;
-        }
-        self.localSearch = MKLocalSearch.init(request: request)
-        self.localSearch.start(completionHandler: completionHandler)
+        let searchInstance = MKLocalSearch.init(request: request)
+        searchInstance.start(completionHandler: completionHandler)
     }
     
     func addAnnotation(_ mapItem: MKMapItem?) {
