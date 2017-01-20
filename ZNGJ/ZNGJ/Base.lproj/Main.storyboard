@@ -68,7 +68,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHE-Gw-IQw">
                                 <rect key="frame" x="62" y="267" width="32" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="box-empty"/>
+                                <state key="normal" image="box-checked"/>
                                 <connections>
                                     <action selector="checkAutoLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HKd-Vm-wfX"/>
                                 </connections>
@@ -84,7 +84,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pJ-jU-Eu4">
                                 <rect key="frame" x="230" y="266" width="16" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="box-empty"/>
+                                <state key="normal" image="box-checked"/>
                                 <connections>
                                     <action selector="checkRecordPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="md7-Cp-v4s"/>
                                 </connections>
@@ -96,8 +96,10 @@
                     <navigationItem key="navigationItem" title="登录" id="XnN-it-vH9"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="autoLoginCheckBox" destination="DHE-Gw-IQw" id="saT-Yt-Ui6"/>
                         <outlet property="cellphone" destination="YgB-Vu-dFJ" id="Tpo-Ih-kcy"/>
                         <outlet property="password" destination="ELH-ew-Lu5" id="p1g-Bx-X91"/>
+                        <outlet property="rememberPWCheckBox" destination="1pJ-jU-Eu4" id="X6r-Kz-TQO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -463,7 +465,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="box-empty" width="16" height="16"/>
+        <image name="box-checked" width="16" height="16"/>
         <image name="password" width="110" height="110"/>
         <image name="user" width="144" height="150"/>
     </resources>
