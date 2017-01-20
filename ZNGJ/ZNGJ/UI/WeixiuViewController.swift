@@ -35,7 +35,6 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     // dictionary for return object from MKLocalSearch
     var mapAnnotationItems = [Int: MKMapItem]()
-    var iii = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,9 +93,18 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        guard self.locationManager != nil else {
+            return
+        }
+        
         guard userLocation.coordinate.latitude != 0.0 && userLocation.coordinate.longitude != 0.0 else {
             return
         }
+        
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.delegate = nil
+        self.locationManager = nil
+        
         self.userCoordinate = userLocation.coordinate
         //let once = { self.mapView.setCenter(userLocation.coordinate, animated: true) }()
         //let once = {
@@ -139,11 +147,6 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
      // search related method
     func showAllAddressestoAnnotations() {
-        self.iii += 1
-        if (self.iii > 1) {
-            return
-        }
-        
         for item in UserModel.SharedUserModel().orderManager.orderList {
             searchAndShowAddress(item)
         }
