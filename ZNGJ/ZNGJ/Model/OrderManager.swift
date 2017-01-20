@@ -18,5 +18,4 @@ class OrderManager {
         orderList[1].orderId = 1
         orderList[1].orderAddress = "浙江省杭州市省府路8号"
     }
-    
 }

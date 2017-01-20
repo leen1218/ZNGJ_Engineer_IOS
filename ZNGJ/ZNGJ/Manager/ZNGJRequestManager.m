@@ -14,9 +14,9 @@
 
 static ZNGJRequestManager* mSharedManager = nil;
 
-NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";	// 云服务器
+//NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";	// 云服务器
 //NSString* const hostAuthURL = @"http://localhost:7600/auth/%@";
-//NSString* const hostAuthURL = @"http://10.197.113.112:7600/auth/%@";   // 公司无线IP
+NSString* const hostAuthURL = @"http://10.197.113.130:7600/auth/%@";   // 公司无线IP
 
 @interface ZNGJRequestManager()
 

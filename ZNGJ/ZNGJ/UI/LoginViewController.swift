@@ -158,31 +158,38 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	// Request handler protocal
 	func onSuccess(_ response: Any!) {
 		let result_json = response as! Dictionary<String, Any>
-		if (result_json["status"] != nil && result_json["status"] as! String == "200") {
-			
-			// 1. 登录成功， 注册推送
-			self.registerDeviceForPushNotification()
-			
-			// 2. 更新用户名，密码到本地数据存储
-			if self.rememberPasswordCheck || self.autoLoginCheck {
-				UserDefaults.standard.set(self.cellphone.text!, forKey: "username")
-				UserDefaults.standard.set(self.password.text!, forKey: "password")
-				UserDefaults.standard.set(self.autoLoginCheck ? "TRUE" : "FALSE", forKey: "autoLogin")
-				UserDefaults.standard.set(self.rememberPasswordCheck ? "TRUE" : "FALSE", forKey: "rememberPassword")
+		if (result_json["status"] != nil) {
+			if (result_json["status"] as! String == "200") {
+				// 1. 登录成功， 注册推送
+				self.registerDeviceForPushNotification()
+				
+				// 2. 更新用户名，密码到本地数据存储
+				if self.rememberPasswordCheck || self.autoLoginCheck {
+					UserDefaults.standard.set(self.cellphone.text!, forKey: "username")
+					UserDefaults.standard.set(self.password.text!, forKey: "password")
+					UserDefaults.standard.set(self.autoLoginCheck ? "TRUE" : "FALSE", forKey: "autoLogin")
+					UserDefaults.standard.set(self.rememberPasswordCheck ? "TRUE" : "FALSE", forKey: "rememberPassword")
+				}
+				
+				// 3. 获取用户数据
+				let user_info = result_json["user_info"] as? Dictionary<String, Any>
+				if user_info != nil {
+					UserModel.SharedUserModel().setup(data: user_info!)
+				}
+				
+				// 4. 到客户管理界面
+				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
+				self.present(mainTBVC, animated: true, completion: {
+				})
+			} else if (result_json["status"] as! String == "401") {
+				showAlert(title: "手机号未注册", message:"手机号不存在，请注册！")
+			} else if (result_json["status"] as! String == "402") {
+				showAlert(title: "密码不正确", message:"密码不正确，请重新输入！")
+			} else {
+				showAlert(title: "请求失败", message:"请重新登录")
 			}
-			
-			// 3. 获取用户数据
-			let user_info = result_json["user_info"] as? Dictionary<String, Any>
-			if user_info != nil {
-				UserModel.SharedUserModel().setup(data: user_info!)
-			}
-			
-			// 4. 到客户管理界面
-			let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
-			self.present(mainTBVC, animated: true, completion: {
-			})
 		} else {
-			showAlert(title: "请求失败", message:"请重新发送")
+			showAlert(title: "请求失败", message:"请重新登录")
 		}
 	}
 	func onFailure(_ error: Error!) {
