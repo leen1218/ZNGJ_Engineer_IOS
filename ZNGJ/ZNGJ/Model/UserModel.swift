@@ -12,8 +12,8 @@ class UserModel
 {
 	private init() {
 		self.orderManager = OrderManager()
-		self.onlineTime = 0
-		self.orderCount = 0
+		self.orderCountOfReserved = 0
+		self.orderCountOfToday = 0
 		self.todaysPayment = 0.0
 		self.dealRatio = 0
 	}
@@ -37,8 +37,8 @@ class UserModel
 	var orderManager:OrderManager!
 	
 	// Enginner Info
-	var onlineTime:Int!
-	var orderCount:Int!
+	var orderCountOfReserved:Int!
+	var orderCountOfToday:Int!
 	var todaysPayment:Float!
 	var dealRatio:Int!
 }

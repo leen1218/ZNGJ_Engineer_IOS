@@ -12,8 +12,8 @@ import MapKit
 class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 	
 	// 今日维修信息
-	@IBOutlet weak var onlineHours: UILabel!
-	@IBOutlet weak var orderCount: UILabel!
+	@IBOutlet weak var orderReserved: UILabel!
+	@IBOutlet weak var orderTodayCount: UILabel!
 	@IBOutlet weak var todaysPayment: UILabel!
 	@IBOutlet weak var dealRatio: UILabel!
 	
@@ -48,11 +48,11 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 	
 	func setupUI()
 	{
-		let onlineTime:Float = Float(UserModel.SharedUserModel().onlineTime!) / 3600.0
-		self.onlineHours.text = String(onlineTime) + "小时"
+		let orderCountReserved:Int = UserModel.SharedUserModel().orderCountOfReserved!
+		self.orderReserved.text = String(orderCountReserved)
 		
-		let orderCNT:Int = UserModel.SharedUserModel().orderCount!
-		self.orderCount.text = String(orderCNT)
+		let orderCNT:Int = UserModel.SharedUserModel().orderCountOfToday!
+		self.orderTodayCount.text = String(orderCNT)
 		
 		let todaysPay:Float = UserModel.SharedUserModel().todaysPayment!
 		self.todaysPayment.text = String(todaysPay) + "元"
@@ -70,8 +70,6 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         guard segue.identifier == "showReservedOrders" else {
             return
         }
-		
-		// Prepare Order Data To Reserved Orders TVB
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
