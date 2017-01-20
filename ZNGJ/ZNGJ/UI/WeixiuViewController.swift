@@ -30,6 +30,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var placeMark: CLPlacemark!
     var boundingRegion: MKCoordinateRegion!
     var localSearch: MKLocalSearch!
+    var searchReturnCount = 0
     var userCoordinate: CLLocationCoordinate2D!
     
     // dictionary for return object from MKLocalSearch
@@ -45,6 +46,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.locationManager.requestWhenInUseAuthorization()
         self.geoCoder = CLGeocoder()
         self.searchLock = NSObject()
+        self.searchReturnCount = 0
 		
 		// 初始化界面
 		self.setupUI()
@@ -150,6 +152,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
      // search related method
     func showAllAddressestoAnnotations() {
         mapAnnotationItems.removeAll()
+        searchReturnCount = 0
         for item in UserModel.SharedUserModel().orderManager.unreservedOrders {
             searchAndShowAddress(item)
         }
@@ -165,24 +168,33 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         let completionHandler = { (response: MKLocalSearchResponse?, error: Error?) -> Void in
             if (error != nil) {
                 // error handling
+                synchronizd(self.searchLock) {
+                    self.searchCompleteHandler()
+                }
                 
             } else {
                 
                 self.boundingRegion = response?.boundingRegion
+                
                 synchronizd(self.searchLock) {
                     self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
-                    if (self.mapAnnotationItems.count == UserModel.SharedUserModel().orderManager.unreservedOrders.count) {
-                        // all annotation returned, we add all to mapview
-                        for item in self.mapAnnotationItems.values {
-                            self.addAnnotation(item)
-                        }
-                    }
+                    self.searchCompleteHandler()
                 }
             }
         }
         
         let searchInstance = MKLocalSearch.init(request: request)
         searchInstance.start(completionHandler: completionHandler)
+    }
+    
+    func searchCompleteHandler() {
+        self.searchReturnCount += 1
+        if (self.searchReturnCount == UserModel.SharedUserModel().orderManager.unreservedOrders.count) {
+            // all annotation returned, we add all to mapview
+            for item in self.mapAnnotationItems.values {
+                self.addAnnotation(item)
+            }
+        }
     }
     
     func addAnnotation(_ mapItem: MKMapItem?) {
