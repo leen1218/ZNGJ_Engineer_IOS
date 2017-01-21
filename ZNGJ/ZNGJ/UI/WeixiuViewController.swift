@@ -91,10 +91,16 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
         
         annotationView?.canShowCallout = true
-        let button = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 40, height: 20))
-        button.setTitle("zngj", for: UIControlState.normal)
-        button.setTitleColor(UIColor.blue, for: UIControlState.normal)
-        annotationView?.leftCalloutAccessoryView = button
+        if let newAnnotation = annotation as? OrderAnnotation {
+            let calloutView = AnnotationCalloutView()
+            let views = ["calloutView": calloutView]
+            // need to use constraint instead of setting frame, otherwise the size will not be applied.
+            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(120)]", options: [], metrics: nil, views: views))
+            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(80)]", options: [], metrics: nil, views: views))
+            calloutView.setOrderId(newAnnotation.orderId)
+            annotationView?.detailCalloutAccessoryView = calloutView
+            
+        }
         return annotationView
     }
     
@@ -175,7 +181,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 synchronizd(self.searchLock) {
                     self.searchCompleteHandler()
                 }
-                Logger.logToConsole("Search FAILED. Address \(order.orderAddress) with index \(self.searchReturnCount)")
+                Logger.logToConsole("Search FAILED. Address \(order.orderAddress) with id \(order.orderId)")
             } else {
                 
                 self.boundingRegion = response?.boundingRegion
@@ -184,7 +190,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                     self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
                     self.searchCompleteHandler()
                 }
-                Logger.logToConsole("Search SUCCESS. Address \(order.orderAddress) with index \(self.searchReturnCount)")
+                Logger.logToConsole("Search SUCCESS. Address \(order.orderAddress) with id \(order.orderId)")
                 
             }
         }
@@ -197,17 +203,17 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.searchReturnCount += 1
         if (self.searchReturnCount == UserModel.SharedUserModel().orderManager.unreservedOrders.count) {
             // all annotation returned, we add all to mapview
-            for item in self.mapAnnotationItems.values {
-                self.addAnnotation(item)
+            for (key, value) in self.mapAnnotationItems {
+                self.addAnnotation(key, value)
             }
         }
     }
     
-    func addAnnotation(_ mapItem: MKMapItem?) {
+    func addAnnotation(_ orderId: Int, _ mapItem: MKMapItem?) {
         guard let mapItem = mapItem else {
             return
         }
-        let annotation = OrderAnnotation(mapItem.placemark.location!.coordinate, title: mapItem.name!, subtitle: "")
+        let annotation = OrderAnnotation(mapItem.placemark.location!.coordinate, title: "订单信息", subtitle: "", orderId: orderId)
         self.mapView.addAnnotation(annotation)
     }
     
