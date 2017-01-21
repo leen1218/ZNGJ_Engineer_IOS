@@ -22,7 +22,6 @@ class AnnotationCalloutView : UIView {
         // currently add a uilabel, for testing purpose
         let label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 80))
         label.text = "智能管家"
-        label.isUserInteractionEnabled = true;
         self.addSubview(label)
         
         // tap event handling
