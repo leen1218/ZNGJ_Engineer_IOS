@@ -30,6 +30,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var placeMark: CLPlacemark!
     var boundingRegion: MKCoordinateRegion!
     var localSearch: MKLocalSearch!
+    var searchReturnCount = 0
     var userCoordinate: CLLocationCoordinate2D!
     
     // dictionary for return object from MKLocalSearch
@@ -45,6 +46,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.locationManager.requestWhenInUseAuthorization()
         self.geoCoder = CLGeocoder()
         self.searchLock = NSObject()
+        self.searchReturnCount = 0
 		
 		// 初始化界面
 		self.setupUI()
@@ -89,6 +91,16 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
         
         annotationView?.canShowCallout = true
+        if let newAnnotation = annotation as? OrderAnnotation {
+            let calloutView = AnnotationCalloutView()
+            let views = ["calloutView": calloutView]
+            // need to use constraint instead of setting frame, otherwise the size will not be applied.
+            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(120)]", options: [], metrics: nil, views: views))
+            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(80)]", options: [], metrics: nil, views: views))
+            calloutView.setOrderId(newAnnotation.orderId)
+            annotationView?.detailCalloutAccessoryView = calloutView
+            
+        }
         return annotationView
     }
     
@@ -150,6 +162,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
      // search related method
     func showAllAddressestoAnnotations() {
         mapAnnotationItems.removeAll()
+        searchReturnCount = 0
         for item in UserModel.SharedUserModel().orderManager.unreservedOrders {
             searchAndShowAddress(item)
         }
@@ -165,19 +178,20 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         let completionHandler = { (response: MKLocalSearchResponse?, error: Error?) -> Void in
             if (error != nil) {
                 // error handling
-                
+                synchronizd(self.searchLock) {
+                    self.searchCompleteHandler()
+                }
+                Logger.logToConsole("Search FAILED. Address \(order.orderAddress) with id \(order.orderId)")
             } else {
                 
                 self.boundingRegion = response?.boundingRegion
+                
                 synchronizd(self.searchLock) {
                     self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
-                    if (self.mapAnnotationItems.count == UserModel.SharedUserModel().orderManager.unreservedOrders.count) {
-                        // all annotation returned, we add all to mapview
-                        for item in self.mapAnnotationItems.values {
-                            self.addAnnotation(item)
-                        }
-                    }
+                    self.searchCompleteHandler()
                 }
+                Logger.logToConsole("Search SUCCESS. Address \(order.orderAddress) with id \(order.orderId)")
+                
             }
         }
         
@@ -185,11 +199,21 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         searchInstance.start(completionHandler: completionHandler)
     }
     
-    func addAnnotation(_ mapItem: MKMapItem?) {
+    func searchCompleteHandler() {
+        self.searchReturnCount += 1
+        if (self.searchReturnCount == UserModel.SharedUserModel().orderManager.unreservedOrders.count) {
+            // all annotation returned, we add all to mapview
+            for (key, value) in self.mapAnnotationItems {
+                self.addAnnotation(key, value)
+            }
+        }
+    }
+    
+    func addAnnotation(_ orderId: Int, _ mapItem: MKMapItem?) {
         guard let mapItem = mapItem else {
             return
         }
-        let annotation = OrderAnnotation(mapItem.placemark.location!.coordinate, title: mapItem.name!, subtitle: "")
+        let annotation = OrderAnnotation(mapItem.placemark.location!.coordinate, title: "订单信息", subtitle: "", orderId: orderId)
         self.mapView.addAnnotation(annotation)
     }
     
