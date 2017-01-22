@@ -1,0 +1,3 @@
+target “ZNGJ” do
+pod 'AMapLocation'
+end
