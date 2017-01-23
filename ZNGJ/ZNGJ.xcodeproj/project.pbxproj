@@ -46,6 +46,7 @@
 		8DEBA4641E2E45FC009599F6 /* ReservedOrdersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */; };
 		8DEBA4661E2E4784009599F6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4651E2E4784009599F6 /* OrderViewController.swift */; };
 		8DEBA4681E31E77C009599F6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4671E31E77C009599F6 /* UserModel.swift */; };
+		8DEBA46A1E3633F1009599F6 /* IncomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4691E3633F1009599F6 /* IncomeTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReservedOrdersTVC.swift; path = UI/ReservedOrdersTVC.swift; sourceTree = "<group>"; };
 		8DEBA4651E2E4784009599F6 /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderViewController.swift; path = UI/OrderViewController.swift; sourceTree = "<group>"; };
 		8DEBA4671E31E77C009599F6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		8DEBA4691E3633F1009599F6 /* IncomeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomeTVC.swift; path = UI/IncomeTVC.swift; sourceTree = "<group>"; };
 		99F1BF0436671D238A86A186 /* Pods-ZNGJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZNGJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZNGJ/Pods-ZNGJ.release.xcconfig"; sourceTree = "<group>"; };
 		F0790B6A2FB4F68FA3811709 /* libPods-ZNGJ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZNGJ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -203,6 +205,7 @@
 				6DD0A01A1E279D15002F837D /* PlacemarkViewController.swift */,
 				8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */,
 				8DEBA4651E2E4784009599F6 /* OrderViewController.swift */,
+				8DEBA4691E3633F1009599F6 /* IncomeTVC.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */,
 				8DEBA4681E31E77C009599F6 /* UserModel.swift in Sources */,
 				8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */,
+				8DEBA46A1E3633F1009599F6 /* IncomeTVC.swift in Sources */,
 				8DEBA45C1E1E1950009599F6 /* MySettingViewController.swift in Sources */,
 				8D14DC5E1E12889200924FFD /* AFURLRequestSerialization.m in Sources */,
 				6DDDEA9E1E2E539A005409A1 /* Order.swift in Sources */,

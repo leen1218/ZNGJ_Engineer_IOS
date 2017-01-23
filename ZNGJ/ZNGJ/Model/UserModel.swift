@@ -43,10 +43,20 @@ class UserModel
 			let orderStatus:String = personalOrder["OrderStatus"] as! String
 			if orderStatus == "进行中" {
 				orderReserved += 1
+				
+				// 个人未完成队列
+				let order_id:Int = personalOrder["ID"] as! Int
+				let order_address:String = personalOrder["Address"] as! String
+				UserModel.SharedUserModel().orderManager.addOrderToUnCompletedList(order: Order(order_id: order_id, order_address: order_address))
 			} else if orderStatus == "已完成" {
 				orderReservedOfToday += 1
 				let orderPayment = Float(personalOrder["ActualAmount"] as! String)
 				payments += orderPayment!
+				
+				// 个人已完成队列
+				let order_id:Int = personalOrder["ID"] as! Int
+				let order_address:String = personalOrder["Address"] as! String
+				UserModel.SharedUserModel().orderManager.addOrderToCompletedList(order: Order(order_id: order_id, order_address: order_address))
 			}
 		}
 		self.orderCountOfToday = orderReservedOfToday
