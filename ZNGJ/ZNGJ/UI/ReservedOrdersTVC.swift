@@ -44,4 +44,19 @@ class ReservedOrdersTVC: UITableViewController {
 		return cell!
 	}
 	
+// Cell Segue
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if sender is UITableViewCell {
+			if segue.identifier == "showOrderDetail" && segue.destination is OrderViewController {
+				let destVC: OrderViewController = segue.destination as! OrderViewController
+				let cellIndex: IndexPath? = self.tableView.indexPath(for: sender as! UITableViewCell)
+				guard cellIndex != nil else {
+					print("所选订单为空!")
+					return
+				}
+				destVC.order = self.orders[cellIndex!.row]
+			}
+		}
+	}
+	
 }

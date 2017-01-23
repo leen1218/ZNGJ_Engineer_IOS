@@ -88,6 +88,15 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         guard segue.identifier == "showReservedOrders" else {
             return
         }
+		
+		guard segue.destination is ReservedOrdersTVC else {
+			print("未完成订单跳转的页面不是Table View")
+			return
+		}
+		
+		let reservedOrderListTVC: ReservedOrdersTVC = segue.destination as! ReservedOrdersTVC
+		reservedOrderListTVC.orders = UserModel.SharedUserModel().orderManager.unreservedOrders
+		
     }
     
     // MARK: MAMapViewDelegate
