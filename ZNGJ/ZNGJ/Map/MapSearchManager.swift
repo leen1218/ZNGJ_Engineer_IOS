@@ -42,8 +42,8 @@ class MapSearchManager : NSObject, AMapSearchDelegate {
             // While if the key exists, we don't need to send the request again
             if resultMap[item.orderAddress] == nil {
                 resultMap[item.orderAddress] = CustomSearchResponse()
-                resultMap[item.orderAddress]?.orderIds.append(item.orderId)
             }
+            resultMap[item.orderAddress]?.orderIds.append(item.orderId)
         }
         
         for item in resultMap.keys {
