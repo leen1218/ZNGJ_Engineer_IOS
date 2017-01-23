@@ -46,4 +46,17 @@ class OrderManager {
 		self.uncompletedOrders.removeAll()
 		self.unreservedOrders.removeAll()
 	}
+    
+    func getUnreservedOrdersFromIds(_ orderIds: [Int]) -> [Order] {
+        var retOrders: [Order] = []
+        for orderId in orderIds {
+            for order in unreservedOrders {
+                if (orderId == order.orderId) {
+                    retOrders.append(order)
+                    break;
+                }
+            }
+        }
+        return retOrders
+    }
 }

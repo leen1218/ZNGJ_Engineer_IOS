@@ -116,20 +116,29 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         
         var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
         if (annotationView == nil) {
-            annotationView = MAPinAnnotationView.init(annotation: annotation, reuseIdentifier: "Pin")
+            annotationView = CustomAnnotationView.init(annotation: annotation, reuseIdentifier: "Pin")
         } else {
             annotationView?.annotation = annotation
         }
         
-        annotationView?.canShowCallout = true
+        annotationView?.canShowCallout = false
+        
         if let newAnnotation = annotation as? OrderAnnotation {
-            let calloutView = AnnotationCalloutView()
-            let views = ["calloutView": calloutView]
-            // need to use constraint instead of setting frame, otherwise the size will not be applied.
-            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(120)]", options: [], metrics: nil, views: views))
-            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(80)]", options: [], metrics: nil, views: views))
-            calloutView.setOrderId(newAnnotation.orderIds)
-            annotationView?.leftCalloutAccessoryView = calloutView
+            if let newView = annotationView as? CustomAnnotationView {
+                newView.setOrderId(newAnnotation.orderIds)
+            }
+            
+            
+//            let calloutView = AnnotationCalloutView()
+//            calloutView.translatesAutoresizingMaskIntoConstraints = false
+//            
+//
+//            let views = ["calloutView": calloutView]
+//            // need to use constraint instead of setting frame, otherwise the size will not be applied.
+//            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(240)]", options: [], metrics: nil, views: views))
+//            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(200)]", options: [], metrics: nil, views: views))
+//            calloutView.setOrderId(newAnnotation.orderIds)
+//            annotationView?.leftCalloutAccessoryView = calloutView
             
         }
         return annotationView

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3BB084E67859846D7B8FE03E /* libPods-ZNGJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0790B6A2FB4F68FA3811709 /* libPods-ZNGJ.a */; };
+		6D732A081E36571A007D77BC /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D732A071E36571A007D77BC /* CustomAnnotationView.swift */; };
 		6D797BED1E35FB3E00FAB1F2 /* MapSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D797BEC1E35FB3E00FAB1F2 /* MapSearchManager.swift */; };
 		6D97CCE41E3273870098EBD0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97CCE31E3273870098EBD0 /* Utils.swift */; };
 		6D97CCE61E3273B90098EBD0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97CCE51E3273B90098EBD0 /* Logger.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		02B162C0156CE091258D1CE1 /* Pods-ZNGJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZNGJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZNGJ/Pods-ZNGJ.debug.xcconfig"; sourceTree = "<group>"; };
+		6D732A071E36571A007D77BC /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotationView.swift; path = UI/CustomAnnotationView.swift; sourceTree = "<group>"; };
 		6D797BEC1E35FB3E00FAB1F2 /* MapSearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchManager.swift; sourceTree = "<group>"; };
 		6D97CCE31E3273870098EBD0 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6D97CCE51E3273B90098EBD0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				8DEBA4631E2E45FC009599F6 /* ReservedOrdersTVC.swift */,
 				8DEBA4651E2E4784009599F6 /* OrderViewController.swift */,
 				8DEBA4691E3633F1009599F6 /* IncomeTVC.swift */,
+				6D732A071E36571A007D77BC /* CustomAnnotationView.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				6D97CCE41E3273870098EBD0 /* Utils.swift in Sources */,
 				8D14DC731E13E9D900924FFD /* ZNGJRequestManager.m in Sources */,
 				8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */,
+				6D732A081E36571A007D77BC /* CustomAnnotationView.swift in Sources */,
 				8DEBA4621E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m in Sources */,
 				8D14DC5D1E12889200924FFD /* AFSecurityPolicy.m in Sources */,
 				8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */,
