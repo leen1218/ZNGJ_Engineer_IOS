@@ -14,7 +14,18 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright &#169; 2014 AutoNavi. All Rights Reserved.
+			<string>Copyright © 2014 AutoNavi. All Rights Reserved.
+</string>
+			<key>License</key>
+			<string>Copyright</string>
+			<key>Title</key>
+			<string>AMap2DMap</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright © 2014 AutoNavi. All Rights Reserved.
 </string>
 			<key>License</key>
 			<string>Copyright</string>
@@ -25,12 +36,23 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright &#169; 2014 AutoNavi. All Rights Reserved.
+			<string>Copyright © 2014 AutoNavi. All Rights Reserved.
 </string>
 			<key>License</key>
 			<string>Copyright</string>
 			<key>Title</key>
 			<string>AMapLocation</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright © 2014 AutoNavi. All Rights Reserved.
+</string>
+			<key>License</key>
+			<string>Copyright</string>
+			<key>Title</key>
+			<string>AMapSearch</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

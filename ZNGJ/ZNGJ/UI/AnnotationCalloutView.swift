@@ -9,20 +9,17 @@
 import Foundation
 
 class AnnotationCalloutView : UIView {
-    var orderId: Int!
-    var currentOrder: Order!
-    func setOrderId(_ orderId: Int) {
-        self.orderId = orderId
-        for item in UserModel.SharedUserModel().orderManager.unreservedOrders {
-            if item.orderId == orderId {
-                currentOrder = item
-                break
-            }
-        }
+    var orderIds: [Int] = []
+    
+    func setOrderId(_ orderIds: [Int]) {
+        self.orderIds = orderIds
+        
         // currently add a uilabel, for testing purpose
-        let label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 80))
-        label.text = "智能管家"
-        self.addSubview(label)
+//        let label = UILabel.init(frame: self.bounds)
+//        label.text = "智能管家"
+//        self.addSubview(label)
+        
+        self.backgroundColor = UIColor.red
         
         // tap event handling
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))

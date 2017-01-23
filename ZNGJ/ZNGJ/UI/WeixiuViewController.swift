@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationManagerDelegate, MapSearchManagerDelegate {
 	
 	// 今日维修信息
 	@IBOutlet weak var orderReserved: UILabel!
@@ -24,32 +24,52 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     let verticalSpan = 0.005
     let horizontalSpan = 0.005
     
-    @IBOutlet weak var mapView: MKMapView!
-    var locationManager: CLLocationManager!
     var geoCoder: CLGeocoder!
     var placeMark: CLPlacemark!
     var boundingRegion: MKCoordinateRegion!
-    var localSearch: MKLocalSearch!
-    var searchReturnCount = 0
     var userCoordinate: CLLocationCoordinate2D!
+    var locationManager: AMapLocationManager!
+    
+    var mapView: MAMapView!
+    
+    var mapSearchManager: MapSearchManager!
+    
     
     // dictionary for return object from MKLocalSearch
     var mapAnnotationItems = [Int: MKMapItem]()
     
-    var searchLock: NSObject!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationManager = CLLocationManager()
+        self.initMap()
+        self.locationManager = AMapLocationManager()
         self.locationManager.delegate = self
-        self.mapView.delegate = self
-        self.locationManager.requestWhenInUseAuthorization()
         self.geoCoder = CLGeocoder()
-        self.searchLock = NSObject()
-        self.searchReturnCount = 0
+        
+        self.mapSearchManager = MapSearchManager.init(orders: UserModel.SharedUserModel().orderManager.unreservedOrders)
+        self.mapSearchManager.delegate = self
+        
+        //        self.locationManager.requestWhenInUseAuthorization()
+        // replace the above line with the following if we use GaoDe map
+        self.locationManager.startUpdatingLocation()
 		
 		// 初始化界面
 		self.setupUI()
+    }
+    
+    func initMap() {
+        if (self.mapView == nil) {
+            self.mapView = MAMapView()
+            self.mapView.translatesAutoresizingMaskIntoConstraints = false
+            self.mapView.delegate = self
+            self.view.addSubview(self.mapView)
+            
+            // set the map size and position
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0))
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0.32 * self.view.bounds.height))
+            
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0.0))
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.height, multiplier: 0.6, constant: 0.0))
+        }
     }
 	
 	func setupUI()
@@ -87,74 +107,81 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 		
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    // MARK: MAMapViewDelegate
+    
+    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
         guard !annotation.isEqual(mapView.userLocation) else {
             return nil
         }
         
         var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
         if (annotationView == nil) {
-            annotationView = MKPinAnnotationView.init(annotation: annotation, reuseIdentifier: "Pin")
+            annotationView = CustomAnnotationView.init(annotation: annotation, reuseIdentifier: "Pin")
         } else {
             annotationView?.annotation = annotation
         }
         
-        annotationView?.canShowCallout = true
+        annotationView?.canShowCallout = false
+        
         if let newAnnotation = annotation as? OrderAnnotation {
-            let calloutView = AnnotationCalloutView()
-            let views = ["calloutView": calloutView]
-            // need to use constraint instead of setting frame, otherwise the size will not be applied.
-            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(120)]", options: [], metrics: nil, views: views))
-            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(80)]", options: [], metrics: nil, views: views))
-            calloutView.setOrderId(newAnnotation.orderId)
-            annotationView?.detailCalloutAccessoryView = calloutView
+            if let newView = annotationView as? CustomAnnotationView {
+                newView.setOrderId(newAnnotation.orderIds)
+            }
+            
+            
+//            let calloutView = AnnotationCalloutView()
+//            calloutView.translatesAutoresizingMaskIntoConstraints = false
+//            
+//
+//            let views = ["calloutView": calloutView]
+//            // need to use constraint instead of setting frame, otherwise the size will not be applied.
+//            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(240)]", options: [], metrics: nil, views: views))
+//            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(200)]", options: [], metrics: nil, views: views))
+//            calloutView.setOrderId(newAnnotation.orderIds)
+//            annotationView?.leftCalloutAccessoryView = calloutView
             
         }
         return annotationView
     }
     
-
+    // MARK: MapSearchManagerDelegate
+    func onSearchesFinish() {
+        for item in self.mapSearchManager.resultMap.values {
+            let locationPoint = item.response.pois[0].location!
+            let orderAnnotation = OrderAnnotation(CLLocationCoordinate2D.init(latitude: Double(locationPoint.latitude), longitude: Double(locationPoint.longitude)), title: "订单信息", subtitle: "", orderIds: item.orderIds)
+            self.mapView.addAnnotation(orderAnnotation)
+        }
+    }
     
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+    // MARK: AMapLocationManagerDelegate
+    
+    func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!, reGeocode: AMapLocationReGeocode!) {
+        
         guard self.locationManager != nil else {
             return
         }
         
-        guard userLocation.coordinate.latitude != 0.0 && userLocation.coordinate.longitude != 0.0 else {
+        guard location.coordinate.latitude != 0.0 && location.coordinate.longitude != 0.0 else {
             return
         }
         
+        self.mapView.isShowsUserLocation = true
         self.locationManager.stopUpdatingLocation()
         self.locationManager.delegate = nil
         self.locationManager = nil
         
-        self.userCoordinate = userLocation.coordinate
-        //let once = { self.mapView.setCenter(userLocation.coordinate, animated: true) }()
-        //let once = {
-            
-            let span = MKCoordinateSpanMake(horizontalSpan, verticalSpan)
-            let region = MKCoordinateRegionMake(userLocation.coordinate, span)
-            self.mapView.setRegion(region, animated: true)
+        self.userCoordinate = location.coordinate
         
-        //}()
-        //_ = once
+        let span = MACoordinateSpanMake(horizontalSpan, verticalSpan)
+        let region = MACoordinateRegionMake(location.coordinate, span)
+        self.mapView.setRegion(region, animated: true)
+
         
-        
-        self.geoCoder.reverseGeocodeLocation(self.mapView.userLocation.location!, completionHandler: { (placemarks, error) -> Void in
-            if let placemarks = placemarks {
-                guard placemarks.count > 0 else {
-                    return
-                }
-                self.placeMark = placemarks[0]
-            }
-        })
-        
-        self.showAllAddressestoAnnotations()
+        // begin search here
+        self.mapSearchManager.beginSearch()
     }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-        
-    {
+    func amapLocationManager(_ manager: AMapLocationManager!, didChange status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.restricted || status == CLAuthorizationStatus.denied) {
             let alert = UIAlertController(title: "Location Disabled", message: "Please enable location services in the Settings app.", preferredStyle:UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -163,116 +190,7 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         else if (status == CLAuthorizationStatus.authorizedWhenInUse) {
             // This will implicitly try to get the user's location, so this can't be set
             // until we know the user granted this app location access
-            self.mapView.showsUserLocation = true
+            self.mapView.isShowsUserLocation = true
         }
     }
-    
-    
-     // search related method
-    func showAllAddressestoAnnotations() {
-        mapAnnotationItems.removeAll()
-        searchReturnCount = 0
-        for item in UserModel.SharedUserModel().orderManager.unreservedOrders {
-            searchAndShowAddress(item)
-        }
-    }
-    
-    func searchAndShowAddress(_ order: Order) {
-        let addressString = order.orderAddress
-        
-        let newRegion = MKCoordinateRegion.init(center: self.userCoordinate, span: MKCoordinateSpan.init(latitudeDelta: horizontalSpan, longitudeDelta: verticalSpan))
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = addressString
-        request.region = newRegion
-        let completionHandler = { (response: MKLocalSearchResponse?, error: Error?) -> Void in
-            if (error != nil) {
-                // error handling
-                synchronizd(self.searchLock) {
-                    self.searchCompleteHandler()
-                }
-                Logger.logToConsole("Search FAILED. Address \(order.orderAddress) with id \(order.orderId)")
-            } else {
-                
-                self.boundingRegion = response?.boundingRegion
-                
-                synchronizd(self.searchLock) {
-                    self.mapAnnotationItems[order.orderId] = response?.mapItems[0]
-                    self.searchCompleteHandler()
-                }
-                Logger.logToConsole("Search SUCCESS. Address \(order.orderAddress) with id \(order.orderId)")
-                
-            }
-        }
-        
-        let searchInstance = MKLocalSearch.init(request: request)
-        searchInstance.start(completionHandler: completionHandler)
-    }
-    
-    func searchCompleteHandler() {
-        self.searchReturnCount += 1
-        if (self.searchReturnCount == UserModel.SharedUserModel().orderManager.unreservedOrders.count) {
-            // all annotation returned, we add all to mapview
-            for (key, value) in self.mapAnnotationItems {
-                self.addAnnotation(key, value)
-            }
-        }
-    }
-    
-    func addAnnotation(_ orderId: Int, _ mapItem: MKMapItem?) {
-        guard let mapItem = mapItem else {
-            return
-        }
-        let annotation = OrderAnnotation(mapItem.placemark.location!.coordinate, title: "订单信息", subtitle: "", orderId: orderId)
-        self.mapView.addAnnotation(annotation)
-    }
-    
-
-
-
-    
-    /*
- 
- 
- 	
- 
- - (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
- 
- self.getAddressButton.enabled = NO;
- 
- if (!self.presentedViewController) {
- NSString *message = nil;
- if (error.code == kCLErrorLocationUnknown) {
- // If you receive this error while using the iOS Simulator, location simulatiion may not be on.  Choose a location from the Debug > Simulate Location menu in Xcode.
- message = @"Your location could not be determined.";
- }
- else {
- message = error.localizedDescription;
- }
- 
- UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
- message:message
- preferredStyle:UIAlertControllerStyleAlert];
- [alert addAction:[UIAlertAction actionWithTitle:@"OK"
- style:UIAlertActionStyleDefault
- handler:nil]];
- [self presentViewController:alert animated:YES completion:nil];
- }
- }
- 
- - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
- if (status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied) {
- UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Location Disabled"
- message:@"Please enable location services in the Settings app."
- preferredStyle:UIAlertControllerStyleAlert];
- [alert addAction:[UIAlertAction actionWithTitle:@"OK"
- style:UIAlertActionStyleDefault
- handler:nil]];
- [self presentViewController:alert animated:YES completion:nil];
- }
- else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
- // This will implicitly try to get the user's location, so this can't be set
- // until we know the user granted this app location access
- self.mapView.showsUserLocation = YES;
- }
- }*/
 }

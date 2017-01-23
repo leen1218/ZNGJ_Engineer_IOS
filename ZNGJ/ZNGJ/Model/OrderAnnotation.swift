@@ -9,16 +9,16 @@
 import Foundation
 import MapKit
 
-class OrderAnnotation : NSObject, MKAnnotation {
+class OrderAnnotation : NSObject, MAAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
-    var orderId: Int
+    var orderIds: [Int] = []
     
-    init(_ coordinate: CLLocationCoordinate2D, title: String, subtitle: String, orderId: Int) {
+    init(_ coordinate: CLLocationCoordinate2D, title: String, subtitle: String, orderIds: [Int]) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
-        self.orderId = orderId
+        self.orderIds = orderIds
     }
 }
