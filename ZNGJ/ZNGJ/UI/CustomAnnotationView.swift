@@ -40,9 +40,9 @@ class CustomAnnotationView : MAPinAnnotationView {
             while((topVC!.presentedViewController) != nil) {
                 topVC = topVC!.presentedViewController
             }
-            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderListTVC")
-            if let newVC = vc as? ReservedOrdersTVC {
-                newVC.orders = UserModel.SharedUserModel().orderManager.getUnreservedOrdersFromIds(self.orderIds)
+            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderDetailsVC")
+            if let newVC = vc as? OrderViewController {
+                newVC.order = UserModel.SharedUserModel().orderManager.getUnreservedOrdersFromIds(self.orderIds)[0]
                 topVC?.present(vc, animated: true, completion: nil)
             }
             
