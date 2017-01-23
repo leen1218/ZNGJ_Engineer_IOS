@@ -29,5 +29,6 @@ class Order{
 	var orderCellPhone: String = "初始手机号"
 	var orderReservedDate: String = "初始时间"
 	var orderProduction: String = "初始类目"
+	var orderPayment: Float = 888.0
     
 }

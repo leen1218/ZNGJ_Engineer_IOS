@@ -10,6 +10,9 @@ import Foundation
 
 class MySettingViewController: UIViewController {
 	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showCompletedOrders"
@@ -22,5 +25,20 @@ class MySettingViewController: UIViewController {
 			let reservedOrderListTVC: ReservedOrdersTVC = segue.destination as! ReservedOrdersTVC
 			reservedOrderListTVC.orders = UserModel.SharedUserModel().orderManager.uncompletedOrders + UserModel.SharedUserModel().orderManager.completedOrders
 		}
+		else if segue.identifier == "showOrderPayments"
+		{
+			guard segue.destination is IncomeTVC else {
+				print("账单跳转的页面不是Table View")
+				return
+			}
+			
+			let orderPaymentsListTVC: IncomeTVC = segue.destination as! IncomeTVC
+			orderPaymentsListTVC.completedOrders = UserModel.SharedUserModel().orderManager.completedOrders
+		}
 	}
+	
+	@IBAction func logout(_ sender: UIButton) {
+		print("logout")
+	}
+	
 }
