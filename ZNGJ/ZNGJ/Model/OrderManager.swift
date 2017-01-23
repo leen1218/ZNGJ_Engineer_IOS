@@ -24,16 +24,26 @@ class OrderManager {
     }
 	
 	var unreservedOrders: [Order] = []
-	var personalOrders: [Order] = []
+	var completedOrders: [Order] = []
+	var uncompletedOrders: [Order] = []
 	
 	func addOrderToUnreservedList(order:Order)
 	{
 		self.unreservedOrders.append(order)
 	}
+	func addOrderToUnCompletedList(order:Order)
+	{
+		self.uncompletedOrders.append(order)
+	}
+	func addOrderToCompletedList(order:Order)
+	{
+		self.completedOrders.append(order)
+	}
 	
 	func clearOrders()
 	{
-		self.personalOrders.removeAll()
+		self.completedOrders.removeAll()
+		self.uncompletedOrders.removeAll()
 		self.unreservedOrders.removeAll()
 	}
 }
