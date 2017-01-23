@@ -58,9 +58,17 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
     
     func initMap() {
         if (self.mapView == nil) {
-            self.mapView = MAMapView.init(frame: self.view.bounds)
+            self.mapView = MAMapView()
+            self.mapView.translatesAutoresizingMaskIntoConstraints = false
             self.mapView.delegate = self
             self.view.addSubview(self.mapView)
+            
+            // set the map size and position
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0))
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0.32 * self.view.bounds.height))
+            
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0.0))
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.height, multiplier: 0.6, constant: 0.0))
         }
     }
 	
