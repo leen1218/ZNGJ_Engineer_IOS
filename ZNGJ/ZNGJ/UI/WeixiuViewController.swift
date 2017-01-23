@@ -76,6 +76,15 @@ class WeixiuViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         guard segue.identifier == "showReservedOrders" else {
             return
         }
+		
+		guard segue.destination is ReservedOrdersTVC else {
+			print("未完成订单跳转的页面不是Table View")
+			return
+		}
+		
+		let reservedOrderListTVC: ReservedOrdersTVC = segue.destination as! ReservedOrdersTVC
+		reservedOrderListTVC.orders = UserModel.SharedUserModel().orderManager.unreservedOrders
+		
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
