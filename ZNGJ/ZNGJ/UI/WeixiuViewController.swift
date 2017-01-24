@@ -58,6 +58,19 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
 		self.setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.mapSearchManager.cancelAllSearches()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // begin search here
+        self.mapSearchManager.beginSearch()
+        
+    }
+    
     func initMap() {
         if (self.mapView == nil) {
             self.mapView = MAMapView()
@@ -149,6 +162,9 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
     // MARK: MapSearchManagerDelegate
     func onSearchesFinish() {
         for item in self.mapSearchManager.resultMap.values {
+            guard item.response != nil else {
+                continue
+            }
             let locationPoint = item.response.pois[0].location!
             let orderAnnotation = OrderAnnotation(CLLocationCoordinate2D.init(latitude: Double(locationPoint.latitude), longitude: Double(locationPoint.longitude)), title: "订单信息", subtitle: "", orderIds: item.orderIds)
             self.mapView.addAnnotation(orderAnnotation)
@@ -177,10 +193,8 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         let span = MACoordinateSpanMake(horizontalSpan, verticalSpan)
         let region = MACoordinateRegionMake(location.coordinate, span)
         self.mapView.setRegion(region, animated: true)
-
         
-        // begin search here
-        self.mapSearchManager.beginSearch()
+        
     }
     
     func amapLocationManager(_ manager: AMapLocationManager!, didChange status: CLAuthorizationStatus) {
