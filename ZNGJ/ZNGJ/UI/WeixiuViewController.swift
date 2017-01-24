@@ -48,6 +48,8 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         self.mapSearchManager = MapSearchManager.init(orders: UserModel.SharedUserModel().orderManager.unreservedOrders)
         self.mapSearchManager.delegate = self
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
         //        self.locationManager.requestWhenInUseAuthorization()
         // replace the above line with the following if we use GaoDe map
         self.locationManager.startUpdatingLocation()
@@ -125,7 +127,7 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         
         if let newAnnotation = annotation as? OrderAnnotation {
             if let newView = annotationView as? CustomAnnotationView {
-                newView.setOrderId(newAnnotation.orderIds)
+                newView.setOrderId(newAnnotation.orderIds, self)
             }
             
             
