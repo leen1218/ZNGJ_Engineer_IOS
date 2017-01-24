@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		print("APNs device token: \(deviceTokenString)")
 		// 2. 向服务器发送登录请求
 		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_REGISTER_DEVICE_TOKEN)
-		var cellphone:String? = UserDefaults.standard.string(forKey: "cellphone")
+		var cellphone:String? = UserDefaults.standard.string(forKey: "username")
 		if (cellphone == nil) {
 			cellphone = "13616549781"
 		}

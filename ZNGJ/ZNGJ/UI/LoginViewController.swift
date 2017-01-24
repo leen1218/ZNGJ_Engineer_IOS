@@ -160,16 +160,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 		let result_json = response as! Dictionary<String, Any>
 		if (result_json["status"] != nil) {
 			if (result_json["status"] as! String == "200") {
-				// 1. 登录成功， 注册推送
-				self.registerDeviceForPushNotification()
 				
-				// 2. 更新用户名，密码到本地数据存储
+				// 1. 更新用户名，密码到本地数据存储
 				if self.rememberPasswordCheck || self.autoLoginCheck {
 					UserDefaults.standard.set(self.cellphone.text!, forKey: "username")
 					UserDefaults.standard.set(self.password.text!, forKey: "password")
 					UserDefaults.standard.set(self.autoLoginCheck ? "TRUE" : "FALSE", forKey: "autoLogin")
 					UserDefaults.standard.set(self.rememberPasswordCheck ? "TRUE" : "FALSE", forKey: "rememberPassword")
 				}
+				
+				// 2. 登录成功， 注册推送
+				self.registerDeviceForPushNotification()
 				
 				// 3. 获取用户数据
 				let user_info = result_json["user_info"] as? Dictionary<String, Any>
