@@ -11,6 +11,15 @@ import Foundation
 class AnnotationCalloutView : UIView {
     var orderIds: [Int] = []
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.red
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     func setOrderId(_ orderIds: [Int]) {
         self.orderIds = orderIds
         
@@ -19,16 +28,14 @@ class AnnotationCalloutView : UIView {
 //        label.text = "智能管家"
 //        self.addSubview(label)
         
-        self.backgroundColor = UIColor.red
-        
         // tap event handling
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
-        self.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+//        self.addGestureRecognizer(tap)
     }
     
-    func handleTap(sender: UITapGestureRecognizer) {
-        Logger.logToConsole("annotation calloutview tapped !!!")
-    }
+//    func handleTap(sender: UITapGestureRecognizer) {
+//        Logger.logToConsole("annotation calloutview tapped !!!")
+//    }
     
     
 }

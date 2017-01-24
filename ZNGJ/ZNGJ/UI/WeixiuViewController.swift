@@ -159,6 +159,8 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         return annotationView
     }
     
+    
+    
     // MARK: MapSearchManagerDelegate
     func onSearchesFinish() {
         for item in self.mapSearchManager.resultMap.values {
