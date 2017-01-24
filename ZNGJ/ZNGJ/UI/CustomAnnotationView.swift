@@ -12,11 +12,13 @@ class CustomAnnotationView : MAPinAnnotationView {
     var calloutView: AnnotationCalloutView!
     fileprivate static let calloutWidth = 200
     fileprivate static let calloutHeight = 70
+    var vc: UIViewController!
     
     var orderIds: [Int] = []
     
-    func setOrderId(_ orderIds: [Int]) {
+    func setOrderId(_ orderIds: [Int], _ vc: UIViewController) {
         self.orderIds = orderIds
+        self.vc = vc
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,8 +44,8 @@ class CustomAnnotationView : MAPinAnnotationView {
             }
             let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderDetailsVC")
             if let newVC = vc as? OrderViewController {
-                newVC.order = UserModel.SharedUserModel().orderManager.getUnreservedOrdersFromIds(self.orderIds)[0]
-                topVC?.present(vc, animated: true, completion: nil)
+                newVC.order = UserModel.SharedUserModel().orderManager.getUnreservedOrdersFromIds(self.orderIds)[0]                
+                self.vc.navigationController?.pushViewController(newVC, animated: true)
             }
             
         }

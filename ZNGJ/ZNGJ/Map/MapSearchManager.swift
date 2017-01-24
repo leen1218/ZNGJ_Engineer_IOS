@@ -54,6 +54,9 @@ class MapSearchManager : NSObject, AMapSearchDelegate {
     }
     
     func beginSearch() {
+        requestIndex = 0
+        requestCount = 0
+        responseCount = 0
         let loopSize = min(MapSearchManager.maxRequestCount, self.requests.count)
         for i in 0..<loopSize {
             executeRequest(self.requests[i])

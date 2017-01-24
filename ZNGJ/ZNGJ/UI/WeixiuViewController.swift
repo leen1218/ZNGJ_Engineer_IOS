@@ -48,12 +48,27 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         self.mapSearchManager = MapSearchManager.init(orders: UserModel.SharedUserModel().orderManager.unreservedOrders)
         self.mapSearchManager.delegate = self
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
         //        self.locationManager.requestWhenInUseAuthorization()
         // replace the above line with the following if we use GaoDe map
         self.locationManager.startUpdatingLocation()
 		
 		// 初始化界面
 		self.setupUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.mapSearchManager.cancelAllSearches()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // begin search here
+        self.mapSearchManager.beginSearch()
+        
     }
     
     func initMap() {
@@ -125,7 +140,7 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         
         if let newAnnotation = annotation as? OrderAnnotation {
             if let newView = annotationView as? CustomAnnotationView {
-                newView.setOrderId(newAnnotation.orderIds)
+                newView.setOrderId(newAnnotation.orderIds, self)
             }
             
             
@@ -147,6 +162,9 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
     // MARK: MapSearchManagerDelegate
     func onSearchesFinish() {
         for item in self.mapSearchManager.resultMap.values {
+            guard item.response != nil else {
+                continue
+            }
             let locationPoint = item.response.pois[0].location!
             let orderAnnotation = OrderAnnotation(CLLocationCoordinate2D.init(latitude: Double(locationPoint.latitude), longitude: Double(locationPoint.longitude)), title: "订单信息", subtitle: "", orderIds: item.orderIds)
             self.mapView.addAnnotation(orderAnnotation)
@@ -175,10 +193,8 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         let span = MACoordinateSpanMake(horizontalSpan, verticalSpan)
         let region = MACoordinateRegionMake(location.coordinate, span)
         self.mapView.setRegion(region, animated: true)
-
         
-        // begin search here
-        self.mapSearchManager.beginSearch()
+        
     }
     
     func amapLocationManager(_ manager: AMapLocationManager!, didChange status: CLAuthorizationStatus) {
