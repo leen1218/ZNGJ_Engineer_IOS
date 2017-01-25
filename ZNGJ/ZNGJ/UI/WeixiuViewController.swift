@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationManagerDelegate, MapSearchManagerDelegate {
+class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationManagerDelegate, MapSearchManagerDelegate, CalloutViewDelegate {
 	
 	// 今日维修信息
 	@IBOutlet weak var orderReserved: UILabel!
@@ -210,5 +210,18 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
             // until we know the user granted this app location access
             self.mapView.isShowsUserLocation = true
         }
+    }
+    
+    // MARK: CalloutViewDelegate
+    func presentVC(_ viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        self.present(viewControllerToPresent, animated: animated, completion: completion)
+    }
+    
+    func dismissVC(animated: Bool, completion: (() -> Void)?) {
+        self.dismiss(animated: animated, completion: completion)
+    }
+    
+    func pushViewController(_ viewcontroller: UIViewController, animated: Bool) {
+        self.navigationController?.pushViewController(viewcontroller, animated: animated)
     }
 }

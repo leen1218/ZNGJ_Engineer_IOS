@@ -12,7 +12,7 @@ class CustomAnnotationView : MAPinAnnotationView, UIPopoverPresentationControlle
     var calloutView: AnnotationCalloutView!
     fileprivate static let calloutWidth = 200
     fileprivate static let calloutHeight = 70
-    weak var vc: UIViewController!
+    weak var delegate: CalloutViewDelegate!
     
     var orderIds: [Int] = []
     
@@ -30,34 +30,41 @@ class CustomAnnotationView : MAPinAnnotationView, UIPopoverPresentationControlle
     }
 
     
-    func setOrderId(_ orderIds: [Int], _ vc: UIViewController) {
+    func setOrderId(_ orderIds: [Int], _ delegate: CalloutViewDelegate) {
         self.orderIds = orderIds
-        self.vc = vc
+        self.delegate = delegate
     }
     
     func handleAnnotationViewTap(sender: UITapGestureRecognizer) {
         Logger.logToConsole("handleAnnotationViewTap")
+        let calloutWidth = 100
+        let calloutHeight = 100
         // we should present the callout view here with popover
-        let calloutView = AnnotationCalloutView.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))
+        let calloutView = AnnotationCalloutView.init(frame: CGRect.init(x: 0, y: 0, width: calloutWidth, height: calloutHeight))
+        calloutView.setOrderId(self.orderIds)
+        calloutView.delegate = self.delegate
         
         // Present the view controller using the popover style.
         let vc = UIViewController.init()
-        vc.preferredContentSize = CGSize.init(width: 100, height: 100)
-        vc.modalPresentationStyle = UIModalPresentationStyle.popover
         vc.view.addSubview(calloutView)
         
-        self.vc.present(vc, animated: true, completion: nil)
+        vc.preferredContentSize = CGSize.init(width: calloutWidth, height: calloutHeight)
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        
         let presentationController = vc.popoverPresentationController
         presentationController?.permittedArrowDirections = .any
         presentationController?.sourceView = self
-        presentationController?.sourceRect = self.frame
+        presentationController?.sourceRect = self.bounds
         presentationController?.delegate = self
+        
+        delegate.presentVC(vc, animated: true, completion: nil)
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
     
