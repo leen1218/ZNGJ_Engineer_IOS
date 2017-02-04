@@ -40,10 +40,10 @@ class MapSearchManager : NSObject, AMapSearchDelegate {
         for item in orders {
             // this if can be used to check if key exists in dictionary according to http://stackoverflow.com/questions/29299727/check-if-key-exists-in-dictionary-of-type-typetype
             // While if the key exists, we don't need to send the request again
-            if resultMap[item.orderAddress] == nil {
-                resultMap[item.orderAddress] = CustomSearchResponse()
+            if self.resultMap[item.orderAddress] == nil {
+                self.resultMap[item.orderAddress] = CustomSearchResponse()
             }
-            resultMap[item.orderAddress]?.orderIds.append(item.orderId)
+            self.resultMap[item.orderAddress]?.orderIds.append(item.orderId)
         }
         
         for item in resultMap.keys {

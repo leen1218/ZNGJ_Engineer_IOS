@@ -39,6 +39,7 @@
 		8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC771E13E9E500924FFD /* ZNGJRegisterRequest.m */; };
 		8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC791E13E9E500924FFD /* ZNGJRequest.m */; };
 		8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */; };
+		8D61B2341E45F085003C305E /* ZNGJAcceptOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D61B2331E45F085003C305E /* ZNGJAcceptOrderRequest.m */; };
 		8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */; };
 		8DEBA4581E1E1908009599F6 /* WeixiuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */; };
 		8DEBA45C1E1E1950009599F6 /* MySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA45B1E1E1950009599F6 /* MySettingViewController.swift */; };
@@ -98,6 +99,8 @@
 		8D14DC8F1E13F69E00924FFD /* ZNGJ-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZNGJ-Bridging-Header.h"; sourceTree = "<group>"; };
 		8D14DC901E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAuthenticationCodeRequest.h; sourceTree = "<group>"; };
 		8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJAuthenticationCodeRequest.m; sourceTree = "<group>"; };
+		8D61B2321E45F085003C305E /* ZNGJAcceptOrderRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAcceptOrderRequest.h; sourceTree = "<group>"; };
+		8D61B2331E45F085003C305E /* ZNGJAcceptOrderRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJAcceptOrderRequest.m; sourceTree = "<group>"; };
 		8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTBViewController.swift; path = UI/MainTBViewController.swift; sourceTree = "<group>"; };
 		8DEBA4561E1DCE50009599F6 /* ZNGJ.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZNGJ.entitlements; sourceTree = "<group>"; };
 		8DEBA4571E1E1908009599F6 /* WeixiuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeixiuViewController.swift; path = UI/WeixiuViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 		8D14DC671E13E95600924FFD /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				8D61B2321E45F085003C305E /* ZNGJAcceptOrderRequest.h */,
+				8D61B2331E45F085003C305E /* ZNGJAcceptOrderRequest.m */,
 				8DEBA4601E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.h */,
 				8DEBA4611E1E7A9D009599F6 /* ZNGJPushDeviceTokenRequest.m */,
 				8D14DC901E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.h */,
@@ -459,6 +464,7 @@
 				8D14DC221E0CD56C00924FFD /* AppDelegate.swift in Sources */,
 				8D14DC5C1E12889200924FFD /* AFNetworkReachabilityManager.m in Sources */,
 				8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */,
+				8D61B2341E45F085003C305E /* ZNGJAcceptOrderRequest.m in Sources */,
 				8DEBA4681E31E77C009599F6 /* UserModel.swift in Sources */,
 				8D14DC481E1166CA00924FFD /* RegisterViewController.swift in Sources */,
 				8DEBA46A1E3633F1009599F6 /* IncomeTVC.swift in Sources */,

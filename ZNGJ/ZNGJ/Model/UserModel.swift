@@ -16,6 +16,8 @@ class UserModel
 		self.orderCountOfToday = 0
 		self.todaysPayment = 0.0
 		self.dealRatio = 0
+		self.cellphone = "13616549781"
+		self.engineerId = 0  // Global Unique ID for Engineer
 	}
 	
 	private static var model:UserModel? = nil
@@ -31,6 +33,9 @@ class UserModel
 	
 	func setup(data:Dictionary<String, Any>)
 	{
+		self.cellphone = data["cellphone"] as! String
+		self.engineerId = data["engineerId"] as! Int
+		
 		let personalOrders = data["personalOrders"] as! [Dictionary<String, Any>]
 		
 		// 设置用户数据
@@ -45,18 +50,14 @@ class UserModel
 				orderReserved += 1
 				
 				// 个人未完成队列
-				let order_id:Int = personalOrder["ID"] as! Int
-				let order_address:String = personalOrder["Address"] as! String
-				UserModel.SharedUserModel().orderManager.addOrderToUnCompletedList(order: Order(order_id: order_id, order_address: order_address))
+				UserModel.SharedUserModel().orderManager.addOrderToUnCompletedList(order: Order(data: personalOrder))
 			} else if orderStatus == "已完成" {
 				orderReservedOfToday += 1
 				let orderPayment = Float(personalOrder["ActualAmount"] as! String)
 				payments += orderPayment!
 				
 				// 个人已完成队列
-				let order_id:Int = personalOrder["ID"] as! Int
-				let order_address:String = personalOrder["Address"] as! String
-				UserModel.SharedUserModel().orderManager.addOrderToCompletedList(order: Order(order_id: order_id, order_address: order_address))
+				UserModel.SharedUserModel().orderManager.addOrderToCompletedList(order: Order(data: personalOrder))
 			}
 		}
 		self.orderCountOfToday = orderReservedOfToday
@@ -72,12 +73,10 @@ class UserModel
 		let unreservedOrders = data["unreservedOrders"] as! [Dictionary<String, Any>]
 		for unreservedOrder in unreservedOrders {
 			let orderStatus:String = unreservedOrder["OrderStatus"] as! String
-			if orderStatus != "进行中" {
+			if orderStatus != "未接单" {
 				continue
 			}
-			let order_id:Int = unreservedOrder["ID"] as! Int
-			let order_address:String = unreservedOrder["Address"] as! String
-			UserModel.SharedUserModel().orderManager.addOrderToUnreservedList(order: Order(order_id: order_id, order_address: order_address))
+			UserModel.SharedUserModel().orderManager.addOrderToUnreservedList(order: Order(data: unreservedOrder))
 		}
 	}
 	
@@ -88,4 +87,7 @@ class UserModel
 	var orderCountOfToday:Int!
 	var todaysPayment:Float!
 	var dealRatio:Int!
+	var cellphone:String!
+	var engineerId:Int!
+	
 }

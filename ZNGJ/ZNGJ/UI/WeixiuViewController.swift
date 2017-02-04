@@ -118,7 +118,7 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
 		}
 		
 		let reservedOrderListTVC: ReservedOrdersTVC = segue.destination as! ReservedOrdersTVC
-		reservedOrderListTVC.orders = UserModel.SharedUserModel().orderManager.unreservedOrders
+		reservedOrderListTVC.orders = UserModel.SharedUserModel().orderManager.uncompletedOrders
 		
     }
     

@@ -18,6 +18,18 @@ class Order{
 		self.orderId = order_id
 		self.orderAddress = order_address
 	}
+	
+	init(data:Dictionary<String, Any>) {
+		self.orderId = data["ID"] as! Int
+		self.orderAddress = data["Address"] as! String
+		self.orderNo = data["OrderNo"] as! String
+		self.orderStatus = data["OrderStatus"] as! String
+		self.orderBookingDate = data["SubmitDate"] as! String
+		self.orderContact = data["Contact"] as! String
+		self.orderCellPhone = data["CellPhone"] as! String
+		self.orderReservedDate = data["BookTime"] as! String
+		self.orderProduction = data["ProductName"] as! String
+	}
     
     var orderId: Int = 0
     var orderAddress: String = "初始地址"
