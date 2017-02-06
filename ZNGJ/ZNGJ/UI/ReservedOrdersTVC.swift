@@ -38,7 +38,7 @@ class ReservedOrdersTVC: UITableViewController {
 		}
 		
 		// configure cell
-		cell!.textLabel!.text = "Order ID: " + String(self.orders[indexPath.row].orderId)
+		cell!.textLabel!.text = self.orders[indexPath.row].orderProduction
 		cell!.detailTextLabel!.text = self.orders[indexPath.row].orderAddress
 		
 		return cell!
