@@ -20,31 +20,31 @@ class Order{
 	}
 	
 	init(data:Dictionary<String, Any>) {
-		if (data["ID"] != nil) {
+		if (data["ID"] as? Int != nil) {
 			self.orderId = data["ID"] as! Int
 		}
-		if (data["Address"] != nil) {
+		if (data["Address"] as? String != nil) {
 			self.orderAddress = data["Address"] as! String
 		}
-		if (data["OrderNo"] != nil) {
+		if (data["OrderNo"] as? String != nil) {
 			self.orderNo = data["OrderNo"] as! String
 		}
-		if (data["OrderStatus"] != nil) {
+		if (data["OrderStatus"] as? String != nil ) {
 			self.orderStatus = data["OrderStatus"] as! String
 		}
-		if (data["SubmitDate"] != nil) {
+		if (data["SubmitDate"] as? String != nil) {
 			self.orderBookingDate = data["SubmitDate"] as! String
 		}
-		if (data["Contact"] != nil) {
+		if (data["Contact"] as? String != nil) {
 			self.orderContact = data["Contact"] as! String
 		}
-		if (data["CellPhone"] != nil) {
+		if (data["CellPhone"] as? String != nil) {
 			self.orderCellPhone = data["CellPhone"] as! String
 		}
-		if (data["BookTime"] != nil) {
+		if (data["BookTime"] as? String != nil) {
 			self.orderReservedDate = data["BookTime"] as! String
 		}
-		if (data["ProductName"] != nil) {
+		if (data["ProductName"] as? String != nil) {
 			self.orderProduction = data["ProductName"] as! String
 		}
 	}

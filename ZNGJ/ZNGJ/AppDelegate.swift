@@ -18,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		AMapServices.shared().apiKey = "3d224d25b983d14ed0a09d243150457c"
+		
+		if (launchOptions != nil) {
+			if let notification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String : Any] {
+				if let order_data = notification["order_info"] as? [String : Any] {
+					let order = Order.init(data: order_data)
+					// TODO, Go Order UI
+				}
+			}
+		}
+		
+		// Launch from Push Notification
+		
 		return true
 	}
 	
@@ -44,7 +56,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-		print(userInfo)
+		if let order_data = userInfo["order_info"] as? [String : Any] {
+			let order = Order.init(data: order_data)
+			// TODO, Go Order UI
+		}
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {
