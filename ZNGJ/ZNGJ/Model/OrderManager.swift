@@ -36,10 +36,12 @@ class OrderManager {
 	func addOrderToUnCompletedList(order:Order)
 	{
 		self.uncompletedOrders.append(order)
+		UserModel.SharedUserModel().orderCountOfReserved = self.uncompletedOrders.count
 	}
 	func addOrderToCompletedList(order:Order)
 	{
 		self.completedOrders.append(order)
+		UserModel.SharedUserModel().orderCountOfToday = self.completedOrders.count
 	}
 	
 	func clearOrders()
