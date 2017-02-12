@@ -22,14 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if (launchOptions != nil) {
 			if let notification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String : Any] {
 				if let order_data = notification["order_info"] as? [String : Any] {
-					let order = Order.init(data: order_data)
-					// TODO, Go Order UI
+					// 添加到pending order，界面打开时添加到界面上面
+					UserModel.SharedUserModel().orderManager.pendingOrder = Order.init(data: order_data)
+					// 消息清空
+					application.applicationIconBadgeNumber = 0
 				}
 			}
 		}
-		
-		// Launch from Push Notification
-		
 		return true
 	}
 	
@@ -55,11 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		print(error)
 	}
 	
-	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
+	{
 		if let order_data = userInfo["order_info"] as? [String : Any] {
 			let order = Order.init(data: order_data)
-			// TODO, Go Order UI
+			UserModel.SharedUserModel().orderManager.addOrderToUnreservedList(order: order)
 		}
+		// 消息清空
+		application.applicationIconBadgeNumber = 0
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {

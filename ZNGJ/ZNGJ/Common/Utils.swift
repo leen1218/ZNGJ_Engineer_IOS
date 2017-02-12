@@ -15,14 +15,19 @@ func synchronizd(_ lock: AnyObject, closure:()->()) {
     objc_sync_exit(lock);
 }
 
-func showAlert(title: String, message : String, parentVC: UIViewController)
+func showAlert(title: String, message : String, parentVC: UIViewController, okAction: UIAlertAction?)
 {
 	let alertController = UIAlertController(title: title,
 	                                        message: message,
 	                                        preferredStyle: .alert)
-	let okAction = UIAlertAction(title: "确定", style: .default, handler: {
-		action in
-	})
-	alertController.addAction(okAction)
+	if okAction == nil {
+		let defaultOkAction = UIAlertAction(title: "确定", style: .default, handler: {
+			// 跳转到维修主界面
+			action in
+		})
+		alertController.addAction(defaultOkAction)
+	} else {
+		alertController.addAction(okAction!)
+	}
 	parentVC.present(alertController, animated: true, completion: nil)
 }

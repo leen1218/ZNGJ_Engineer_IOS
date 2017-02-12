@@ -266,7 +266,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuB-1T-Li1">
-                                <rect key="frame" x="104" y="81" width="11" height="21"/>
+                                <rect key="frame" x="104" y="81" width="31" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -705,6 +705,6 @@
         <image name="user" width="144" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q3w-Aq-7vu"/>
+        <segue reference="4r0-qN-sp9"/>
     </inferredMetricsTieBreakers>
 </document>

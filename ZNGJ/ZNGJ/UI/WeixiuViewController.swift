@@ -56,8 +56,17 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
 		
 		// 初始化界面
 		self.setupUI()
+		
+		// 检查是否有待查看订单
+		if UserModel.SharedUserModel().orderManager.pendingOrder != nil {
+			let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderDetailsVC")
+			if let newVC = vc as? OrderViewController {
+				newVC.order = UserModel.SharedUserModel().orderManager.pendingOrder
+				self.pushViewController(vc, animated: true)
+			}
+		}
     }
-    
+	
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -68,7 +77,8 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         super.viewWillAppear(animated)
         // begin search here
         self.mapSearchManager.beginSearch()
-        
+        // refresh UI
+		self.setupUI()
     }
     
     func initMap() {

@@ -61,25 +61,32 @@ class OrderViewController: UIViewController, RequestHandler {
 	}
 	
 	func onSuccess(_ response: Any!) {
+		let okaction = UIAlertAction(title: "确定", style: .default, handler: {
+			// 跳转到维修主界面
+			action in self.navigationController!.popToRootViewController(animated: false)
+		})
 		let result_json = response as! Dictionary<String, Any>
 		if (result_json["status"] != nil) {
+			// 从未接订单列表删除
+			UserModel.SharedUserModel().orderManager.removeOrderFromUnreservedList(order: self.order)
 			if (result_json["status"] as! String == "200") {
-				// 接单成功，弹出提示，跳转到接单界面
-				showAlert(title: "接单成功", message: "已成功抢单，请在未完成订单里查看!", parentVC: self)
+				// 接单成功，添加到未完成订单，跳转到维修主界面
+				UserModel.SharedUserModel().orderManager.addOrderToUnCompletedList(order: self.order)
+				showAlert(title: "接单成功", message: "已成功抢单，请在未完成订单里查看!", parentVC: self, okAction: okaction)
 			} else if (result_json["status"] as! String == "401") {
 				// 接单失败，订单过期，已被抢单
-				showAlert(title: "接单失败", message: "当前订单已被抢，请刷新!", parentVC: self)
+				showAlert(title: "接单失败", message: "当前订单已被抢，请重新接单!", parentVC: self, okAction: okaction)
 			} else if (result_json["status"] as! String == "402") {
 				// 接单失败，订单ID无效
-				showAlert(title: "接单失败", message: "当前订单已失效，请重试!", parentVC: self)
+				showAlert(title: "接单失败", message: "当前订单已失效，请重新接单!", parentVC: self, okAction: okaction)
 			}
-			// TODO, 跳转到维修主界面
 		} else {
-			showAlert(title: "接单失败", message: "接单请求失败，请重试!", parentVC: self)
+			showAlert(title: "接单失败", message: "接单请求失败，请重试!", parentVC: self, okAction: okaction)
 		}
+		
 	}
 	func onFailure(_ error: Error!) {
-		showAlert(title: "接单失败", message: "接单请求失败，请重试!", parentVC: self)
+		showAlert(title: "接单失败", message: "接单请求失败，请重试!", parentVC: self, okAction: nil)
 	}
 	
 }

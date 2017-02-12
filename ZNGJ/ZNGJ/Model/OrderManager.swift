@@ -18,9 +18,20 @@ class OrderManager {
 	var completedOrders: [Order] = []
 	var uncompletedOrders: [Order] = []
 	
+	var pendingOrder : Order? = nil
+	
 	func addOrderToUnreservedList(order:Order)
 	{
 		self.unreservedOrders.append(order)
+	}
+	func removeOrderFromUnreservedList(order:Order)
+	{
+		for i in 0 ..< self.unreservedOrders.count {
+			if self.unreservedOrders[i].orderId == order.orderId {
+				self.unreservedOrders.remove(at: i)
+				break;
+			}
+		}
 	}
 	func addOrderToUnCompletedList(order:Order)
 	{
