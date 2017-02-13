@@ -9,6 +9,7 @@
 #import "ZNGJRequestManager.h"
 #import "ZNGJRegisterRequest.h"
 #import "ZNGJLoginRequest.h"
+#import "ZNGJLogoutRequest.h"
 #import "ZNGJAuthenticationCodeRequest.h"
 #import "ZNGJPushDeviceTokenRequest.h"
 #import "ZNGJAcceptOrderRequest.h"
@@ -45,6 +46,10 @@ NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";	// 云服�
 		case ENUM_REQUEST_LOGIN:
 			request = [[ZNGJLoginRequest alloc] init];
 			request.method = [NSString stringWithFormat:hostAuthURL, @"login"];
+			break;
+		case ENUM_REQUEST_LOGOUT:
+			request = [[ZNGJLogoutRequest alloc] init];
+			request.method = [NSString stringWithFormat:hostAuthURL, @"logout"];
 			break;
 		case ENUM_REQUEST_AUTHENTICATION_CODE:
 			request = [[ZNGJAuthenticationCodeRequest alloc] init];

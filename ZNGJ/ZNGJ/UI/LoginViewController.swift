@@ -102,6 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 		
 		// 开启一键删除操作
 		self.password.clearsOnBeginEditing = true
+		self.cellphone.clearsOnBeginEditing = true
 		
 		// 密码模式
 		self.password.isSecureTextEntry = true

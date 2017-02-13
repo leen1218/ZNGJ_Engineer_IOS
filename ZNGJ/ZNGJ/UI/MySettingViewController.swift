@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MySettingViewController: UIViewController {
+class MySettingViewController: UIViewController, RequestHandler{
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -38,7 +38,32 @@ class MySettingViewController: UIViewController {
 	}
 	
 	@IBAction func logout(_ sender: UIButton) {
-		print("logout")
+		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_LOGOUT)
+		let params:Dictionary<String, String> = ["cellphone":UserModel.SharedUserModel().cellphone!]
+		request.params = params
+		request.handler = self
+		request.start()
 	}
 	
+	func onSuccess(_ response: Any!) {
+		let result_json = response as! Dictionary<String, Any>
+		if (result_json["status"] != nil) {
+			if (result_json["status"] as! String == "200") {
+				// 1. 清除用户名，密码在本地数据存储
+				UserDefaults.standard.removeObject(forKey: "username")
+				UserDefaults.standard.removeObject(forKey: "password")
+				
+				// 2. 到客户登录界面
+				let loginVC = self.storyboard!.instantiateViewController(withIdentifier: "LoginVC")
+				self.present(loginVC, animated: true, completion: {})
+			} else if (result_json["status"] as! String == "401") {
+				showAlert(title: "手机号未注册", message:"手机号不存在，请注册！", parentVC: self, okAction: nil)
+			}
+		} else {
+			showAlert(title: "请求失败", message:"请重新登录", parentVC: self, okAction: nil)
+		}
+	}
+	func onFailure(_ error: Error!) {
+		showAlert(title: "请求失败", message: "退出请求失败，请重试!", parentVC: self, okAction: nil)
+	}
 }
