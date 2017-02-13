@@ -59,6 +59,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if let order_data = userInfo["order_info"] as? [String : Any] {
 			let order = Order.init(data: order_data)
 			UserModel.SharedUserModel().orderManager.addOrderToUnreservedList(order: order)
+			
+			// Try to display popover on the top view controller
+			let rootVC:MainTBViewController = self.window?.rootViewController as! MainTBViewController
+			let rootNVC:UINavigationController? = rootVC.selectedViewController as? UINavigationController
+			if let topVC = rootNVC?.topViewController {
+				let orderInfo = order.orderProduction + " " + order.orderReservedDate
+				let okaction = UIAlertAction(title: "查看", style: .default, handler: {
+					// 跳转到订单详细界面
+					action in
+					let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderDetailsVC")
+					if let newVC = vc as? OrderViewController {
+						newVC.order = order
+						topVC.navigationController?.pushViewController(vc, animated: true)
+					}
+				})
+				showAlert(title: "新的订单", message: orderInfo, parentVC: topVC, okAction: okaction, cancel: true)
+			}
 		}
 		// 消息清空
 		application.applicationIconBadgeNumber = 0

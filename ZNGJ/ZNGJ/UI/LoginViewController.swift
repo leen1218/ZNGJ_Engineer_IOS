@@ -180,8 +180,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 				
 				// 4. 到客户管理界面
 				let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
-				self.present(mainTBVC, animated: true, completion: {
-				})
+				self.view.window?.rootViewController = mainTBVC
+				//self.present(mainTBVC, animated: true, completion: {})
 			} else if (result_json["status"] as! String == "401") {
 				showAlert(title: "手机号未注册", message:"手机号不存在，请注册！")
 			} else if (result_json["status"] as! String == "402") {
