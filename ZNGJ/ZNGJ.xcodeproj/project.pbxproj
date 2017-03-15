@@ -39,6 +39,8 @@
 		8D14DC7B1E13E9E500924FFD /* ZNGJRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC771E13E9E500924FFD /* ZNGJRegisterRequest.m */; };
 		8D14DC7C1E13E9E500924FFD /* ZNGJRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC791E13E9E500924FFD /* ZNGJRequest.m */; };
 		8D14DC921E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */; };
+		8D2B61641E791AF700535D0F /* AuthtificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B61631E791AF700535D0F /* AuthtificationViewController.swift */; };
+		8D2B61681E791FEB00535D0F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2B61671E791FEB00535D0F /* icon.png */; };
 		8D5B3C721E5198C1007AF2E6 /* ZNGJLogoutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B3C711E5198C1007AF2E6 /* ZNGJLogoutRequest.m */; };
 		8D61B2341E45F085003C305E /* ZNGJAcceptOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D61B2331E45F085003C305E /* ZNGJAcceptOrderRequest.m */; };
 		8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */; };
@@ -100,6 +102,8 @@
 		8D14DC8F1E13F69E00924FFD /* ZNGJ-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZNGJ-Bridging-Header.h"; sourceTree = "<group>"; };
 		8D14DC901E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAuthenticationCodeRequest.h; sourceTree = "<group>"; };
 		8D14DC911E14F4FA00924FFD /* ZNGJAuthenticationCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJAuthenticationCodeRequest.m; sourceTree = "<group>"; };
+		8D2B61631E791AF700535D0F /* AuthtificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthtificationViewController.swift; path = UI/AuthtificationViewController.swift; sourceTree = "<group>"; };
+		8D2B61671E791FEB00535D0F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		8D5B3C701E5198C1007AF2E6 /* ZNGJLogoutRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJLogoutRequest.h; sourceTree = "<group>"; };
 		8D5B3C711E5198C1007AF2E6 /* ZNGJLogoutRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJLogoutRequest.m; sourceTree = "<group>"; };
 		8D61B2321E45F085003C305E /* ZNGJAcceptOrderRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAcceptOrderRequest.h; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				8DEBA4651E2E4784009599F6 /* OrderViewController.swift */,
 				8DEBA4691E3633F1009599F6 /* IncomeTVC.swift */,
 				6D732A071E36571A007D77BC /* CustomAnnotationView.swift */,
+				8D2B61631E791AF700535D0F /* AuthtificationViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 		8D14DC421E11655D00924FFD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8D2B61671E791FEB00535D0F /* icon.png */,
 				8D14DC491E121CE000924FFD /* box-checked.png */,
 				8D14DC4A1E121CE000924FFD /* box-empty.png */,
 				8D14DC431E11655D00924FFD /* password.jpg */,
@@ -386,6 +392,7 @@
 				8D14DC461E11655D00924FFD /* user.jpg in Resources */,
 				8D14DC291E0CD56C00924FFD /* Assets.xcassets in Resources */,
 				8D14DC4B1E121CE000924FFD /* box-checked.png in Resources */,
+				8D2B61681E791FEB00535D0F /* icon.png in Resources */,
 				8D14DC4C1E121CE000924FFD /* box-empty.png in Resources */,
 				8D14DC451E11655D00924FFD /* password.jpg in Resources */,
 				8D14DC271E0CD56C00924FFD /* Main.storyboard in Resources */,
@@ -462,6 +469,7 @@
 				8DEBA4661E2E4784009599F6 /* OrderViewController.swift in Sources */,
 				6D97CCE61E3273B90098EBD0 /* Logger.swift in Sources */,
 				8D14DC241E0CD56C00924FFD /* ViewController.swift in Sources */,
+				8D2B61641E791AF700535D0F /* AuthtificationViewController.swift in Sources */,
 				8D14DC5B1E12889200924FFD /* AFHTTPSessionManager.m in Sources */,
 				8DEBA4641E2E45FC009599F6 /* ReservedOrdersTVC.swift in Sources */,
 				8D14DC601E12889200924FFD /* AFURLSessionManager.m in Sources */,
