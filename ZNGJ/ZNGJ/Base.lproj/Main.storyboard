@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -145,37 +146,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user" highlightedImage="user" translatesAutoresizingMaskIntoConstraints="NO" id="eVX-cA-FTj">
-                                <rect key="frame" x="16" y="72" width="108" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" highlightedImage="user" translatesAutoresizingMaskIntoConstraints="NO" id="eVX-cA-FTj">
+                                <rect key="frame" x="21" y="89" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eVX-cA-FTj" secondAttribute="height" multiplier="1:1" id="rVG-s3-SXb"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13888888888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3Z-r0-aGN">
-                                <rect key="frame" x="132" y="135" width="113" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13888888888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3Z-r0-aGN">
+                                <rect key="frame" x="111" y="140" width="113" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="王师傅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qs-NX-i5h">
-                                <rect key="frame" x="132" y="94" width="52" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王师傅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qs-NX-i5h">
+                                <rect key="frame" x="111" y="99" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmD-bo-gzb">
-                                <rect key="frame" x="156" y="224" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="我的账单">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="pW7-we-acM" kind="show" identifier="showOrderPayments" id="uKs-YE-zZW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzm-Ao-4Cr">
-                                <rect key="frame" x="156" y="306" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzm-Ao-4Cr">
+                                <rect key="frame" x="21" y="255" width="62" height="30"/>
                                 <state key="normal" title="订单查询">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -183,9 +173,8 @@
                                     <segue destination="o6v-0h-Veu" kind="show" identifier="showCompletedOrders" id="Q3w-Aq-7vu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvT-gf-d2t">
-                                <rect key="frame" x="156" y="513" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvT-gf-d2t">
+                                <rect key="frame" x="156" y="538" width="62" height="30"/>
                                 <state key="normal" title="退出登录">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -193,8 +182,44 @@
                                     <action selector="logout:" destination="l6b-WV-QzK" eventType="touchUpInside" id="zZJ-oH-9z1"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seperateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="reb-py-yuc">
+                                <rect key="frame" x="0.0" y="249" width="375" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seperateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Fm-S4-Qy8">
+                                <rect key="frame" x="0.0" y="290" width="375" height="1"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmD-bo-gzb">
+                                <rect key="frame" x="21" y="214" width="62" height="30"/>
+                                <state key="normal" title="我的账单">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="pW7-we-acM" kind="show" identifier="showOrderPayments" id="uKs-YE-zZW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eVX-cA-FTj" firstAttribute="leading" secondItem="WzE-oB-uB8" secondAttribute="leadingMargin" constant="5" id="FgO-Rn-m4y"/>
+                            <constraint firstItem="p3Z-r0-aGN" firstAttribute="top" secondItem="7qs-NX-i5h" secondAttribute="bottom" constant="20" id="K8u-Kn-K8d"/>
+                            <constraint firstItem="4Fm-S4-Qy8" firstAttribute="centerX" secondItem="WzE-oB-uB8" secondAttribute="centerX" id="KSO-NU-xcJ"/>
+                            <constraint firstItem="reb-py-yuc" firstAttribute="width" secondItem="WzE-oB-uB8" secondAttribute="width" id="KdQ-g3-qVn"/>
+                            <constraint firstItem="Rzm-Ao-4Cr" firstAttribute="top" secondItem="reb-py-yuc" secondAttribute="bottom" constant="5" id="LOY-bk-8o2"/>
+                            <constraint firstItem="0zR-Tp-SMF" firstAttribute="top" secondItem="qvT-gf-d2t" secondAttribute="bottom" constant="50" id="Ndg-Yl-AO9"/>
+                            <constraint firstItem="reb-py-yuc" firstAttribute="centerX" secondItem="WzE-oB-uB8" secondAttribute="centerX" id="Prn-SB-1vz"/>
+                            <constraint firstItem="p3Z-r0-aGN" firstAttribute="leading" secondItem="7qs-NX-i5h" secondAttribute="leading" id="Te2-bH-cvi"/>
+                            <constraint firstItem="7qs-NX-i5h" firstAttribute="leading" secondItem="eVX-cA-FTj" secondAttribute="trailing" constant="15" id="UqI-27-59o"/>
+                            <constraint firstItem="4Fm-S4-Qy8" firstAttribute="width" secondItem="WzE-oB-uB8" secondAttribute="width" id="bZA-Ps-Jc8"/>
+                            <constraint firstItem="YmD-bo-gzb" firstAttribute="top" secondItem="eVX-cA-FTj" secondAttribute="bottom" constant="50" id="beP-F1-kF6"/>
+                            <constraint firstItem="4Fm-S4-Qy8" firstAttribute="top" secondItem="Rzm-Ao-4Cr" secondAttribute="bottom" constant="5" id="cVW-yk-wza"/>
+                            <constraint firstItem="reb-py-yuc" firstAttribute="top" secondItem="YmD-bo-gzb" secondAttribute="bottom" constant="5" id="eXD-y9-2ys"/>
+                            <constraint firstItem="YmD-bo-gzb" firstAttribute="leading" secondItem="eVX-cA-FTj" secondAttribute="leading" id="fHJ-nL-f0P"/>
+                            <constraint firstItem="7qs-NX-i5h" firstAttribute="top" secondItem="eVX-cA-FTj" secondAttribute="top" constant="10" id="gTL-nY-cR6"/>
+                            <constraint firstItem="eVX-cA-FTj" firstAttribute="top" secondItem="wW3-4U-l8Q" secondAttribute="bottom" constant="25" id="mHx-qA-YKj"/>
+                            <constraint firstItem="Rzm-Ao-4Cr" firstAttribute="centerX" secondItem="YmD-bo-gzb" secondAttribute="centerX" id="wWC-JM-beb"/>
+                            <constraint firstItem="eVX-cA-FTj" firstAttribute="width" secondItem="WzE-oB-uB8" secondAttribute="width" multiplier="0.2" id="wdb-un-gn7"/>
+                            <constraint firstItem="qvT-gf-d2t" firstAttribute="centerX" secondItem="WzE-oB-uB8" secondAttribute="centerX" id="yyZ-Dc-XzV"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KYY-B5-IK5"/>
                 </viewController>
@@ -296,7 +321,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfI-D6-iQ0">
                                 <rect key="frame" x="0.0" y="147" width="375" height="33"/>
-                                <color key="backgroundColor" red="0.9688759446144104" green="0.966258704662323" blue="0.87447720766067505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.84142619371414185" green="0.89322894811630249" blue="0.9556775689125061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="未完成订单">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
