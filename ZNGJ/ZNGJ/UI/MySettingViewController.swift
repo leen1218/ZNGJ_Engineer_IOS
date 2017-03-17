@@ -55,7 +55,8 @@ class MySettingViewController: UIViewController, RequestHandler{
 				
 				// 2. 到客户登录界面
 				let loginVC = self.storyboard!.instantiateViewController(withIdentifier: "LoginVC")
-				self.present(loginVC, animated: true, completion: {})
+				let navigationVC = UINavigationController.init(rootViewController: loginVC)
+				self.present(navigationVC, animated: true, completion: {})
 			} else if (result_json["status"] as! String == "401") {
 				showAlert(title: "手机号未注册", message:"手机号不存在，请注册！", parentVC: self, okAction: nil)
 			}

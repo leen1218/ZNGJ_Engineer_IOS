@@ -16,9 +16,16 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
 	@IBOutlet weak var orderTodayCount: UILabel!
 	@IBOutlet weak var todaysPayment: UILabel!
 	@IBOutlet weak var dealRatio: UILabel!
+	@IBOutlet weak var uncompletedListBTN: UIButton!
+	@IBOutlet weak var techSupportByPhoneBTN: UIButton!
 	
 	@IBAction func showTodayOrders(_ sender: UIButton) {
 	}
+	
+	@IBAction func techSupportByPhone(_ sender: UIButton) {
+		// Engineer call comp backend for technical support
+	}
+	
 	
     // map related stuffs
     let verticalSpan = 0.005
@@ -89,11 +96,15 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
             self.view.addSubview(self.mapView)
             
             // set the map size and position
+			// Left
             self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0))
-            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0.32 * self.view.bounds.height))
-            
+			// Top
+            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.uncompletedListBTN, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 15))
+			// Bottom
+			self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.techSupportByPhoneBTN, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: -5))
+            // Width
             self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: 0.0))
-            self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.height, multiplier: 0.6, constant: 0.0))
+            //self.view.addConstraint(NSLayoutConstraint.init(item: self.mapView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.height, multiplier: 0.6, constant: 0.0))
         }
     }
 	
