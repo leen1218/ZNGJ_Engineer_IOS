@@ -10,8 +10,21 @@ import Foundation
 
 class MySettingViewController: UIViewController, RequestHandler{
 	
+	
+	@IBOutlet weak var profile: UIImageView!
+	@IBOutlet weak var name: UILabel!
+	@IBOutlet weak var phone: UILabel!
+	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		self.setupUI()
+	}
+	
+	func setupUI()
+	{
+		
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

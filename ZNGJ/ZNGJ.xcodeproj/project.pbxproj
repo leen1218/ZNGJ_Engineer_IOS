@@ -43,6 +43,8 @@
 		8D2B61681E791FEB00535D0F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2B61671E791FEB00535D0F /* icon.png */; };
 		8D2B616B1E7AE87800535D0F /* iconwx.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2B61691E7AE87800535D0F /* iconwx.png */; };
 		8D2B616C1E7AE87800535D0F /* seperateLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2B616A1E7AE87800535D0F /* seperateLine.png */; };
+		8D2B616F1E7CE3A400535D0F /* picture-taking.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2B616D1E7CE3A400535D0F /* picture-taking.png */; };
+		8D2B61701E7CE3A400535D0F /* profle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D2B616E1E7CE3A400535D0F /* profle.png */; };
 		8D5B3C721E5198C1007AF2E6 /* ZNGJLogoutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B3C711E5198C1007AF2E6 /* ZNGJLogoutRequest.m */; };
 		8D61B2341E45F085003C305E /* ZNGJAcceptOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D61B2331E45F085003C305E /* ZNGJAcceptOrderRequest.m */; };
 		8DEBA4551E1BF16F009599F6 /* MainTBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEBA4541E1BF16F009599F6 /* MainTBViewController.swift */; };
@@ -108,6 +110,8 @@
 		8D2B61671E791FEB00535D0F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		8D2B61691E7AE87800535D0F /* iconwx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconwx.png; sourceTree = "<group>"; };
 		8D2B616A1E7AE87800535D0F /* seperateLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seperateLine.png; sourceTree = "<group>"; };
+		8D2B616D1E7CE3A400535D0F /* picture-taking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture-taking.png"; sourceTree = "<group>"; };
+		8D2B616E1E7CE3A400535D0F /* profle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profle.png; sourceTree = "<group>"; };
 		8D5B3C701E5198C1007AF2E6 /* ZNGJLogoutRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJLogoutRequest.h; sourceTree = "<group>"; };
 		8D5B3C711E5198C1007AF2E6 /* ZNGJLogoutRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNGJLogoutRequest.m; sourceTree = "<group>"; };
 		8D61B2321E45F085003C305E /* ZNGJAcceptOrderRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNGJAcceptOrderRequest.h; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 		8D14DC421E11655D00924FFD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8D2B616D1E7CE3A400535D0F /* picture-taking.png */,
+				8D2B616E1E7CE3A400535D0F /* profle.png */,
 				8D2B61691E7AE87800535D0F /* iconwx.png */,
 				8D2B616A1E7AE87800535D0F /* seperateLine.png */,
 				8D2B61671E791FEB00535D0F /* icon.png */,
@@ -395,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D14DC2C1E0CD56C00924FFD /* LaunchScreen.storyboard in Resources */,
+				8D2B61701E7CE3A400535D0F /* profle.png in Resources */,
 				8D14DC461E11655D00924FFD /* user.jpg in Resources */,
 				8D14DC291E0CD56C00924FFD /* Assets.xcassets in Resources */,
 				8D14DC4B1E121CE000924FFD /* box-checked.png in Resources */,
@@ -404,6 +411,7 @@
 				8D14DC4C1E121CE000924FFD /* box-empty.png in Resources */,
 				8D14DC451E11655D00924FFD /* password.jpg in Resources */,
 				8D14DC271E0CD56C00924FFD /* Main.storyboard in Resources */,
+				8D2B616F1E7CE3A400535D0F /* picture-taking.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
