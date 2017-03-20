@@ -3,4 +3,5 @@ target “ZNGJ” do
 pod 'AMapLocation'
 pod 'AMap2DMap' #2D地图SDK (2D和3D不能同时使⽤用)
 pod 'AMapSearch' #搜索功能
+pod "Qiniu", "~> 7.1"
 end

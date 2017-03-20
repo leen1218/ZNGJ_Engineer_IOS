@@ -13,6 +13,7 @@
 #import "ZNGJAuthenticationCodeRequest.h"
 #import "ZNGJPushDeviceTokenRequest.h"
 #import "ZNGJAcceptOrderRequest.h"
+#import "ZNGJAuthSubmitRequest.h"
 
 static ZNGJRequestManager* mSharedManager = nil;
 
@@ -62,6 +63,10 @@ NSString* const hostAuthURL = @"http://118.178.180.143:7600/auth/%@";	// 云服�
 		case ENUM_REQUEST_ACCEPT_ORDER:
 			request = [[ZNGJAcceptOrderRequest alloc] init];
 			request.method = [NSString stringWithFormat:hostAuthURL, @"accept_order"];
+			break;
+		case ENUM_REQUEST_AUTH_SUBMIT:
+			request = [[ZNGJAuthSubmitRequest alloc] init];
+			request.method = [NSString stringWithFormat:hostAuthURL, @"auth_submit"];
 			break;
 		default:
 			break;

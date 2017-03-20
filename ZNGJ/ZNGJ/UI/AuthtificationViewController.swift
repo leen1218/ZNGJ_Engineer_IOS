@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate {
+class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, RequestHandler {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,8 +30,6 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 /*
 	头像，证件照，资质证书选取，按钮+imagepickerviewcontroller
 */
-	
-	
 	@IBOutlet weak var profile_img: UIImageView!
 	@IBOutlet weak var shenfenzheng_img: UIImageView!
 	@IBOutlet weak var zhengshu_img: UIImageView!
@@ -300,8 +298,50 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 			showAlert(title: "协议阅读", message: "请阅读并同意易修哥用户协议", parentVC: self, okAction: nil)
 			return
 		}
+		// 1. 检查资料完整性
+		if !self.ziliaoComplete() {
+			showAlert(title: "资料不完整", message: "请完整填写所有的必填资料", parentVC: self, okAction: nil)
+			return
+		}
 		
-		//
+		// 2. 提交图片到图片服务器
+		
+		
+		// 3. 提交申请到工程师服务器
+		let engineerId = UserModel.SharedUserModel().engineerId!
+		let name = self.name_T.text!
+		let congyeType = self.congye_L.text!
+		let city = self.city_L.text!
+		let area = self.area_L.text!
+		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_AUTH_SUBMIT)
+		let params:Dictionary<String, String> = ["engineerID": String(engineerId), "name":name, "congye":congyeType, "city":city, "area":area]
+		request.params = params
+		request.handler = self
+		request.start()
+		
+	}
+	
+	func onSuccess(_ response: Any!) {
+	}
+	
+	func onFailure(_ error: Error!) {
+	}
+	
+	func ziliaoComplete() -> Bool
+	{
+		if self.name_T.text! == "" {
+			return false
+		}
+		if self.congye_L.text! == "请选择" {
+			return false
+		}
+		if self.city_L.text! == "请选择" {
+			return false
+		}
+		if self.area_L.text! == "请选择" {
+			return false
+		}
+		return true;
 	}
 	
 	
