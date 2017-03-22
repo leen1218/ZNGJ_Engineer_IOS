@@ -28,17 +28,38 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 		
 		// Init UI
 		if UserModel.SharedUserModel().engineer.active == "waiting" {
+			self.view.isUserInteractionEnabled = false
 			self.waiting_L.isHidden = false
 			self.submitBTN.isHidden = true
 			// 显示已经提交的资料
-			
+			if let profile_image = UserModel.SharedUserModel().engineer.profileImage {
+				self.profile_img.alpha = 1.0
+				let profileImage_url = "http://oi2mkhmod.bkt.clouddn.com/" + profile_image
+				ZNGJImageUploadManager.shared().downloadImage(self.profile_img, fromURL: profileImage_url)
+			}
+			if let shenfen_image = UserModel.SharedUserModel().engineer.shenfenImage {
+				self.shenfenzheng_img.alpha = 1.0
+				let shenfenImage_url = "http://oi2mkhmod.bkt.clouddn.com/" + shenfen_image
+				ZNGJImageUploadManager.shared().downloadImage(self.shenfenzheng_img, fromURL: shenfenImage_url)
+			}
+			if let zhengshu_image = UserModel.SharedUserModel().engineer.zhengshuImage {
+				self.zhengshu_img.alpha = 1.0
+				let zhengshuImage_url = "http://oi2mkhmod.bkt.clouddn.com/" + zhengshu_image
+				ZNGJImageUploadManager.shared().downloadImage(self.zhengshu_img, fromURL: zhengshuImage_url)
+			}
+			self.name_T.text = UserModel.SharedUserModel().engineer.name
+			self.congye_L.text = UserModel.SharedUserModel().engineer.serviceType
+			self.city_L.text = UserModel.SharedUserModel().engineer.liveCity
+			self.area_L.text = UserModel.SharedUserModel().engineer.serviceArea
 			
 		} else if UserModel.SharedUserModel().engineer.active == "inactive" {
 			self.waiting_L.isHidden = true
 			self.submitBTN.isHidden = false
+			self.view.isUserInteractionEnabled = true
 		} else {
 			self.waiting_L.isHidden = true
 			self.submitBTN.isHidden = true
+			self.view.isUserInteractionEnabled = false
 		}
 	}
 	
@@ -330,6 +351,8 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 		request.params = params
 		request.handler = self
 		request.start()
+		
+		self.view.isUserInteractionEnabled = false
 	}
 	
 	func onSuccess(_ response: Any!) {
@@ -376,7 +399,20 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 					request.handler = self
 					request.start()
 				} else {
-					showAlert(title: "提交成功", message: "审核资料提交成功，等待审核！", parentVC: self, okAction: nil)
+					// 更新数据
+					let user_info = result_json["user_info"] as? Dictionary<String, Any>
+					if user_info != nil {
+						UserModel.SharedUserModel().engineer.refresh(data: user_info!)
+					}
+					
+					// 跳转到住界面
+					let okaction = UIAlertAction(title: "确定", style: .default, handler: {
+						// 跳转到维修主界面
+						action in
+						let mainTBVC = self.storyboard!.instantiateViewController(withIdentifier: "MainTBViewController")
+						self.view.window?.rootViewController = mainTBVC
+					})
+					showAlert(title: "提交成功", message: "审核资料提交成功，等待审核！", parentVC: self, okAction: okaction)
 					return
 				}
 			}
@@ -384,6 +420,9 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 	}
 	
 	func onFailure(_ error: Error!) {
+		self.view.isUserInteractionEnabled = true
+		showAlert(title: "提交失败", message: "审核资料提交失败，请重新提交！", parentVC: self, okAction: nil)
+		return
 	}
 	
 	func ziliaoComplete() -> Bool
@@ -398,6 +437,12 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 			return false
 		}
 		if self.area_L.text! == "请选择" {
+			return false
+		}
+		if self.profile_img == nil {
+			return false
+		}
+		if self.shenfenzheng_img == nil {
 			return false
 		}
 		return true;

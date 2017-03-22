@@ -44,9 +44,12 @@ class OrderViewController: UIViewController, RequestHandler {
 		if self.order.orderStatus == "未接单"
 		{
 			self.acceptOrderBtn.isHidden = false
+			self.acceptOrderBtn.isEnabled = true
 		} else {
 			self.acceptOrderBtn.isHidden = true
+			self.acceptOrderBtn.isEnabled = false
 		}
+		self.view.isUserInteractionEnabled = true
 	}
 	
 	func isAccountInActive() -> Bool {
@@ -59,18 +62,23 @@ class OrderViewController: UIViewController, RequestHandler {
 	@IBAction func acceptOrder(_ sender: UIButton) {
 		
 		if self.isAccountInActive() {
-			// 跳转到资质验证
-			let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthtificationVC")
-			guard let authVC = vc as? AuthtificationViewController else {
-				// 从StoryBoard创建资质验证界面失败
-				return
-			}
-			self.navigationController!.pushViewController(authVC, animated: true)
+			let okaction = UIAlertAction(title: "确定", style: .default, handler: {
+				// 跳转到维修主界面
+				action in
+					// 跳转到资质验证
+					let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthtificationVC")
+					guard let authVC = vc as? AuthtificationViewController else {
+						// 从StoryBoard创建资质验证界面失败
+						return
+					}
+					self.present(authVC, animated: true, completion: nil)
+			})
+			showAlert(title: "资质审核", message: "抢单之前要先通过资质审核，申请吗？", parentVC: self, okAction: okaction, cancel: true)
 			return
 		}
 		// 审核中
 		if self.isAccountInWaiting() {
-			showAlert(title: "等待审核", message: "资料正在审核中，请等待...", parentVC: self, okAction: nil)
+			showAlert(title: "资格审核", message: "资料正在审核中，请等待...", parentVC: self, okAction: nil)
 			return;
 		}
 		

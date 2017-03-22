@@ -19,6 +19,9 @@
 // upload image
 -(BOOL) uploadImage:(UIImage*) image withToken:(NSString*) token savedAs:(NSString*) name;
 
+// download image for UIImage
+-(void) downloadImage:(UIImageView*)imageview fromURL:(NSString*) urlString;
+
 @end
 
 

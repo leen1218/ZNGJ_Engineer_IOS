@@ -40,12 +40,11 @@ class AnnotationCalloutView : UIView {
         Logger.logToConsole("annotation calloutview tapped !!!")
         
         // here we goto the detail order view
-        
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderDetailsVC")
         if let newVC = vc as? OrderViewController {
             newVC.order = UserModel.SharedUserModel().orderManager.getUnreservedOrdersFromIds(self.orderIds)[0]
             delegate.dismissVC(animated: false, completion: nil)
-            delegate.pushViewController(vc, animated: true)
+            delegate.pushViewController(newVC, animated: true)
             
         }
     }

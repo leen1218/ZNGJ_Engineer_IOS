@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GUD-Oc-Ypi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qwF-92-eiY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -562,14 +562,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgp-D2-QWC">
-                                <rect key="frame" x="146.5" y="532" width="82" height="36"/>
+                                <rect key="frame" x="0.0" y="532" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="马上抢单">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="acceptOrder:" destination="Bo8-AL-2wq" eventType="touchUpInside" id="wNI-JW-Q7Y"/>
+                                    <action selector="acceptOrder:" destination="Bo8-AL-2wq" eventType="touchUpInside" id="0ky-oK-PCA"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seperateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="nNV-6P-MLZ">
@@ -610,6 +610,7 @@
                             <constraint firstItem="0sM-bi-btU" firstAttribute="centerY" secondItem="LNH-HH-AUh" secondAttribute="centerY" id="dXX-L2-god"/>
                             <constraint firstItem="j4J-LC-dfW" firstAttribute="top" secondItem="Mvh-XN-16R" secondAttribute="bottom" constant="5" id="dhN-bI-E6k"/>
                             <constraint firstItem="arj-RC-shm" firstAttribute="leading" secondItem="mXm-fL-0Fm" secondAttribute="trailing" constant="10" id="gIz-lM-x2r"/>
+                            <constraint firstItem="Xgp-D2-QWC" firstAttribute="width" secondItem="vl0-VP-WbJ" secondAttribute="width" id="h1S-or-5Og"/>
                             <constraint firstItem="MWe-Xx-zbK" firstAttribute="leading" secondItem="0sM-bi-btU" secondAttribute="leading" id="hL8-id-o7j"/>
                             <constraint firstItem="j4J-LC-dfW" firstAttribute="centerX" secondItem="vl0-VP-WbJ" secondAttribute="centerX" id="k6S-ZT-Kjd"/>
                             <constraint firstItem="8Wl-Ns-3fi" firstAttribute="top" secondItem="bXJ-gO-pES" secondAttribute="bottom" constant="10" id="k7M-Dg-cNc"/>
@@ -1144,6 +1145,6 @@
         <image name="user" width="144" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q3w-Aq-7vu"/>
+        <segue reference="4r0-qN-sp9"/>
     </inferredMetricsTieBreakers>
 </document>

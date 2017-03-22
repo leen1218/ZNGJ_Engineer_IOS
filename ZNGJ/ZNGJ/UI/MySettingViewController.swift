@@ -24,7 +24,17 @@ class MySettingViewController: UIViewController, RequestHandler{
 	
 	func setupUI()
 	{
-		
+		if let profile_image = UserModel.SharedUserModel().engineer.profileImage {
+			self.profile.alpha = 1.0
+			let profileImage_url = "http://oi2mkhmod.bkt.clouddn.com/" + profile_image
+			ZNGJImageUploadManager.shared().downloadImage(self.profile, fromURL: profileImage_url)
+		}
+		if let name = UserModel.SharedUserModel().engineer.name {
+			self.name.text = name
+		}
+		if let phone = UserModel.SharedUserModel().engineer.cellphone {
+			self.phone.text = phone
+		}
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIImageView+AFNetworking.h>
 #import "ZNGJImageUploadManager.h"
 #import <QiniuSDK.h>
 
@@ -37,6 +38,11 @@ static ZNGJImageUploadManager* mSharedManager = nil;
 			  } option:nil];
 	
 	return true;
+}
+
+-(void) downloadImage:(UIImageView*)imageview fromURL:(NSString*) urlString {
+	NSURL *lSourceURL = [NSURL URLWithString:urlString];
+	[imageview setImageWithURL:lSourceURL];
 }
 
 @end
