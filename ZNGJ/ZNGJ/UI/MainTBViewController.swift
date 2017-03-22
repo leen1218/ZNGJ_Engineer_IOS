@@ -20,13 +20,13 @@ class MainTBViewController: UITabBarController {
 	func creatSubViewControllers(){
 		let weixiu_item : UITabBarItem = self.tabBar.items![0]
 		weixiu_item.title = "维修"
-		weixiu_item.image = UIImage(named: "box_empty")
-		weixiu_item.selectedImage = UIImage(named: "box_checked")
+		weixiu_item.image = UIImage(named: "tabweixiu30")
+		weixiu_item.selectedImage = UIImage(named: "tabweixiu30")
 		
 		let wo_item : UITabBarItem = self.tabBar.items![1]
 		wo_item.title = "我"
-		wo_item.image = UIImage(named: "box_empty")
-		wo_item.selectedImage = UIImage(named: "box_checked")
+		wo_item.image = UIImage(named: "tabuser30")
+		wo_item.selectedImage = UIImage(named: "tabuser30")
 	}
     /*
     // MARK: - Navigation
