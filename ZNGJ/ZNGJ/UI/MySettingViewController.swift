@@ -52,7 +52,7 @@ class MySettingViewController: UIViewController, RequestHandler{
 	
 	@IBAction func logout(_ sender: UIButton) {
 		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_LOGOUT)
-		let params:Dictionary<String, String> = ["cellphone":UserModel.SharedUserModel().cellphone!]
+		let params:Dictionary<String, String> = ["cellphone":UserModel.SharedUserModel().engineer.cellphone!]
 		request.params = params
 		request.handler = self
 		request.start()

@@ -49,9 +49,33 @@ class OrderViewController: UIViewController, RequestHandler {
 		}
 	}
 	
+	func isAccountInActive() -> Bool {
+		return UserModel.SharedUserModel().engineer.active == "inactive"
+	}
+	func isAccountInWaiting() -> Bool {
+		return UserModel.SharedUserModel().engineer.active == "waiting"
+	}
+	
 	@IBAction func acceptOrder(_ sender: UIButton) {
+		
+		if self.isAccountInActive() {
+			// 跳转到资质验证
+			let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthtificationVC")
+			guard let authVC = vc as? AuthtificationViewController else {
+				// 从StoryBoard创建资质验证界面失败
+				return
+			}
+			self.navigationController!.pushViewController(authVC, animated: true)
+			return
+		}
+		// 审核中
+		if self.isAccountInWaiting() {
+			showAlert(title: "等待审核", message: "资料正在审核中，请等待...", parentVC: self, okAction: nil)
+			return;
+		}
+		
 		let orderId = order.orderId
-		let engineerId = UserModel.SharedUserModel().engineerId!
+		let engineerId = UserModel.SharedUserModel().engineer.ID!
 		
 		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_ACCEPT_ORDER)
 		let params:Dictionary<String, String> = ["orderId":String(orderId), "engineerId":String(engineerId)]

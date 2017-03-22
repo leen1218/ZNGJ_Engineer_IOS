@@ -12,12 +12,12 @@ class UserModel
 {
 	private init() {
 		self.orderManager = OrderManager()
+		self.engineer = Engineer()
+		
 		self.orderCountOfReserved = 0
 		self.orderCountOfToday = 0
 		self.todaysPayment = 0.0
 		self.dealRatio = 0
-		self.cellphone = "13616549781"
-		self.engineerId = 0  // Global Unique ID for Engineer
 	}
 	
 	private static var model:UserModel? = nil
@@ -33,9 +33,9 @@ class UserModel
 	
 	func setup(data:Dictionary<String, Any>)
 	{
-		self.cellphone = data["cellphone"] as! String
-		self.engineerId = data["engineerId"] as! Int
-		
+		// 工程师个人信息
+		self.engineer.refresh(data: data)
+
 		let personalOrders = data["personalOrders"] as! [Dictionary<String, Any>]
 		
 		// 设置用户数据
@@ -81,13 +81,10 @@ class UserModel
 	}
 	
 	var orderManager:OrderManager!
+	var engineer:Engineer!
 	
-	// Enginner Info
 	var orderCountOfReserved:Int!
 	var orderCountOfToday:Int!
 	var todaysPayment:Float!
 	var dealRatio:Int!
-	var cellphone:String!
-	var engineerId:Int!
-	
 }

@@ -10,6 +10,7 @@
 #import "ZNGJRequestManager.h"
 
 // 七牛图片服务
+#import "ZNGJImageUploadManager.h"
 
 //高德地图
 #import <AMapFoundationKit/AMapFoundationKit.h>

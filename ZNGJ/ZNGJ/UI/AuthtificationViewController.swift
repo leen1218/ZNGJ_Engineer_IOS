@@ -25,6 +25,21 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 		self.pickerView.delegate = self
 		// Hide picker to the bottom of the current frame
 		self.view.addConstraint(NSLayoutConstraint.init(item: self.pickerActionContainer, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0))
+		
+		// Init UI
+		if UserModel.SharedUserModel().engineer.active == "waiting" {
+			self.waiting_L.isHidden = false
+			self.submitBTN.isHidden = true
+			// 显示已经提交的资料
+			
+			
+		} else if UserModel.SharedUserModel().engineer.active == "inactive" {
+			self.waiting_L.isHidden = true
+			self.submitBTN.isHidden = false
+		} else {
+			self.waiting_L.isHidden = true
+			self.submitBTN.isHidden = true
+		}
 	}
 	
 /*
@@ -292,6 +307,10 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 
 // PickerView End
 	
+	@IBOutlet weak var submitBTN: UIButton!
+	@IBOutlet weak var waiting_L: UILabel!
+	
+	
 	// 提交审核
 	@IBAction func submit(_ sender: UIButton) {
 		if !self.agreement {
@@ -304,24 +323,64 @@ class AuthtificationViewController: ViewController, UIPickerViewDataSource, UIPi
 			return
 		}
 		
-		// 2. 提交图片到图片服务器
-		
-		
-		// 3. 提交申请到工程师服务器
-		let engineerId = UserModel.SharedUserModel().engineerId!
-		let name = self.name_T.text!
-		let congyeType = self.congye_L.text!
-		let city = self.city_L.text!
-		let area = self.area_L.text!
-		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_AUTH_SUBMIT)
-		let params:Dictionary<String, String> = ["engineerID": String(engineerId), "name":name, "congye":congyeType, "city":city, "area":area]
+		// 2. 从服务器获取上传图片token
+		let phone = UserModel.SharedUserModel().engineer.cellphone!
+		let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_IMAGE_UPLOAD_TOKEN)
+		let params:Dictionary<String, String> = ["phone": phone]
 		request.params = params
 		request.handler = self
 		request.start()
-		
 	}
 	
 	func onSuccess(_ response: Any!) {
+		let result_json = response as! Dictionary<String, Any>
+		if (result_json["status"] != nil) {
+			if (result_json["status"] as! String == "200") {
+				if (result_json["msg"] as! String == "token") {
+					guard let tokens = result_json["tokens"] as? Dictionary<String, String>  else {
+						showAlert(title: "图片上传失败", message: "资料图片上传失败，请重试", parentVC: self, okAction: nil)
+						return
+					}
+					// 提交申请参数设置
+					let engineerId = 1 //UserModel.SharedUserModel().engineerId!
+					let name = self.name_T.text!
+					let congyeType = self.congye_L.text!
+					let city = self.city_L.text!
+					let area = self.area_L.text!
+					let request:ZNGJRequest = ZNGJRequestManager.shared().createRequest(ENUM_REQUEST_AUTH_SUBMIT)
+					var params:Dictionary<String, String> = ["engineerID": String(engineerId), "name":name, "ServiceType":congyeType, "LiveCity":city, "ServiceArea":area]
+					
+					// 3. 提交图片到图片服务器
+					// 3.1 头像
+					let phone: String = UserModel.SharedUserModel().engineer.cellphone!
+					if self.profile_img != nil {
+						let save_path: String = phone + "_profile.jpg"
+						ZNGJImageUploadManager.shared().uploadImage(self.profile_img.image, withToken: tokens["profile"], savedAs: save_path)
+						params["ProfileImage"] = save_path
+					}
+					// 3.2 身份证
+					if self.shenfenzheng_img != nil {
+						let save_path: String = phone + "_shenfen.jpg"
+						ZNGJImageUploadManager.shared().uploadImage(self.profile_img.image, withToken: tokens["shenfen"], savedAs: save_path)
+						params["ShenfenImage"] = save_path
+					}
+					// 3.3 资质证书
+					if self.profile_img != nil {
+						let save_path: String = phone + "_zizhi.jpg"
+						ZNGJImageUploadManager.shared().uploadImage(self.profile_img.image, withToken: tokens["zizhi"], savedAs: save_path)
+						params["ZhengshuImage"] = save_path
+					}
+					
+					// 4. 提交申请到工程师服务器
+					request.params = params
+					request.handler = self
+					request.start()
+				} else {
+					showAlert(title: "提交成功", message: "审核资料提交成功，等待审核！", parentVC: self, okAction: nil)
+					return
+				}
+			}
+		}
 	}
 	
 	func onFailure(_ error: Error!) {

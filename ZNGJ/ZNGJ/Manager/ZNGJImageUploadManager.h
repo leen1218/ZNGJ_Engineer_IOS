@@ -9,7 +9,18 @@
 #ifndef ZNGJImageUploadManager_h
 #define ZNGJImageUploadManager_h
 
-#import <QiniuSDK.h>
+#import <UIKit/UIKit.h>
+
+@interface ZNGJImageUploadManager : NSObject
+
+// singleton
++(ZNGJImageUploadManager*) sharedManager;
+
+// upload image
+-(BOOL) uploadImage:(UIImage*) image withToken:(NSString*) token savedAs:(NSString*) name;
+
+@end
+
 
 
 

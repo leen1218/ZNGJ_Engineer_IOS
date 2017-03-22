@@ -834,6 +834,12 @@
                                 <rect key="frame" x="0.0" y="179" width="375" height="200"/>
                                 <color key="backgroundColor" red="0.92930322670670762" green="0.92796268622405542" blue="0.94463141025641018" alpha="1" colorSpace="calibratedRGB"/>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资料审核中..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ6-FQ-Dq8">
+                                <rect key="frame" x="0.0" y="577" width="375" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -849,6 +855,7 @@
                             <constraint firstItem="xG0-aq-tuB" firstAttribute="centerY" secondItem="bfz-MM-SdB" secondAttribute="centerY" id="AKF-wb-Qwv"/>
                             <constraint firstItem="mdm-cB-D17" firstAttribute="centerX" secondItem="IbB-cb-g8a" secondAttribute="centerX" id="ANh-Vk-M4x"/>
                             <constraint firstItem="U1a-pY-QJm" firstAttribute="leading" secondItem="iCn-FL-XKH" secondAttribute="leadingMargin" constant="30" id="AZv-zJ-Bpm"/>
+                            <constraint firstItem="bQ6-FQ-Dq8" firstAttribute="width" secondItem="Of6-Kf-sB8" secondAttribute="width" id="Agq-yr-Iuy"/>
                             <constraint firstItem="T13-OE-G83" firstAttribute="leading" secondItem="0mX-hh-teH" secondAttribute="trailing" constant="25" id="BA5-Dz-jMc"/>
                             <constraint firstItem="0mX-hh-teH" firstAttribute="height" secondItem="8up-0h-35M" secondAttribute="height" id="CgM-j5-qC1"/>
                             <constraint firstItem="rbP-ck-3VD" firstAttribute="centerX" secondItem="iCn-FL-XKH" secondAttribute="centerX" id="D08-eB-cDQ"/>
@@ -857,6 +864,7 @@
                             <constraint firstItem="ExE-7o-buV" firstAttribute="width" secondItem="UPQ-NF-A2T" secondAttribute="width" id="EGc-69-htU"/>
                             <constraint firstItem="sW4-8P-I5d" firstAttribute="centerX" secondItem="8up-0h-35M" secondAttribute="centerX" id="EvI-sq-xa1"/>
                             <constraint firstItem="zCL-bp-PU7" firstAttribute="trailing" secondItem="XvL-U3-8Sn" secondAttribute="trailing" id="FWI-oE-smN"/>
+                            <constraint firstItem="Of6-Kf-sB8" firstAttribute="top" secondItem="bQ6-FQ-Dq8" secondAttribute="top" id="Fou-OR-7kX"/>
                             <constraint firstItem="8up-0h-35M" firstAttribute="top" secondItem="eSK-tx-n5s" secondAttribute="bottom" constant="25" id="FqK-iK-0Fz"/>
                             <constraint firstItem="ExE-7o-buV" firstAttribute="top" secondItem="UPQ-NF-A2T" secondAttribute="bottom" constant="1" id="GOa-6q-BNM"/>
                             <constraint firstItem="rbP-ck-3VD" firstAttribute="width" secondItem="iCn-FL-XKH" secondAttribute="width" id="GSb-jz-mlF"/>
@@ -919,6 +927,7 @@
                             <constraint firstItem="xG0-aq-tuB" firstAttribute="trailing" secondItem="zCL-bp-PU7" secondAttribute="trailing" id="vtE-xm-Pu6"/>
                             <constraint firstItem="irt-lJ-GD1" firstAttribute="centerY" secondItem="3gt-jZ-VhH" secondAttribute="centerY" id="w9F-Vq-D6A"/>
                             <constraint firstItem="rbP-ck-3VD" firstAttribute="top" secondItem="3gt-jZ-VhH" secondAttribute="bottom" constant="5" id="xVT-js-Kli"/>
+                            <constraint firstItem="bQ6-FQ-Dq8" firstAttribute="centerX" secondItem="Of6-Kf-sB8" secondAttribute="centerX" id="ywJ-Zo-vSP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -931,6 +940,8 @@
                         <outlet property="pickerView" destination="IbB-cb-g8a" id="tJ5-bN-tKU"/>
                         <outlet property="profile_img" destination="8up-0h-35M" id="fLn-pF-edJ"/>
                         <outlet property="shenfenzheng_img" destination="0mX-hh-teH" id="BNJ-71-anL"/>
+                        <outlet property="submitBTN" destination="Of6-Kf-sB8" id="ZAL-91-5Qi"/>
+                        <outlet property="waiting_L" destination="bQ6-FQ-Dq8" id="DrJ-xh-XJX"/>
                         <outlet property="zhengshu_img" destination="4EJ-OK-bcL" id="bme-u3-uya"/>
                     </connections>
                 </viewController>
