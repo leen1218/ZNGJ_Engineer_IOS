@@ -132,6 +132,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	}
 	
 	@IBAction func login(_ sender: UIButton) {
+		// 隐藏键盘
+		if self.currTextField != nil {
+			self.currTextField.resignFirstResponder()
+		}
 		// 1. 检测手机号密码是否为空
 		guard self.cellphone.text != "" && self.password.text != "" else {
 			self.showAlert(title: "登录失败", message: "用户名或者密码不能为空!")
@@ -153,6 +157,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, RequestHandler
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "goRegister" {
+			// 隐藏键盘
+			if self.currTextField != nil {
+				self.currTextField.resignFirstResponder()
+			}
 		}
 	}
 	

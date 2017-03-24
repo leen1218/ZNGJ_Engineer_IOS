@@ -80,6 +80,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, RequestHand
 	}
 	
 	@IBAction func register(_ sender: UIButton) {
+		// 隐藏键盘
+		if self.currTextField != nil {
+			self.currTextField.resignFirstResponder()
+		}
 		// 1. 检验密码是否一致
 		guard self.password.text! == self.confirmPassword.text! else {
 			self.showAlert(title: "密码不一致", message: "您两次输入的密码不一致，请确认！")
