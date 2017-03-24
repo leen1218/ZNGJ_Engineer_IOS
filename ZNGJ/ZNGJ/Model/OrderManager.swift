@@ -63,4 +63,14 @@ class OrderManager {
         }
         return retOrders
     }
+	
+	func getOrderByID(orderID: Int) -> Order?
+	{
+		for order in self.orderList {
+			if (orderID == order.orderId) {
+				return order
+			}
+		}
+		return nil
+	}
 }

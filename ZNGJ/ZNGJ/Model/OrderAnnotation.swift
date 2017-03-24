@@ -14,11 +14,13 @@ class OrderAnnotation : NSObject, MAAnnotation {
     var title: String?
     var subtitle: String?
     var orderIds: [Int] = []
+	var orderAddress: String?
     
-    init(_ coordinate: CLLocationCoordinate2D, title: String, subtitle: String, orderIds: [Int]) {
+	init(_ coordinate: CLLocationCoordinate2D, title: String, subtitle: String, address: String, orderIds: [Int]) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
         self.orderIds = orderIds
+		self.orderAddress = address
     }
 }

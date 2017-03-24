@@ -161,21 +161,8 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
         
         if let newAnnotation = annotation as? OrderAnnotation {
             if let newView = annotationView as? CustomAnnotationView {
-                newView.setOrderId(newAnnotation.orderIds, self)
+                newView.setOrdersInfo(newAnnotation.orderIds, self, address: newAnnotation.orderAddress!)
             }
-            
-            
-//            let calloutView = AnnotationCalloutView()
-//            calloutView.translatesAutoresizingMaskIntoConstraints = false
-//            
-//
-//            let views = ["calloutView": calloutView]
-//            // need to use constraint instead of setting frame, otherwise the size will not be applied.
-//            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(240)]", options: [], metrics: nil, views: views))
-//            calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(200)]", options: [], metrics: nil, views: views))
-//            calloutView.setOrderId(newAnnotation.orderIds)
-//            annotationView?.leftCalloutAccessoryView = calloutView
-            
         }
         return annotationView
     }
@@ -189,7 +176,7 @@ class WeixiuViewController: UIViewController, MAMapViewDelegate, AMapLocationMan
                 continue
             }
             let locationPoint = item.response.pois[0].location!
-            let orderAnnotation = OrderAnnotation(CLLocationCoordinate2D.init(latitude: Double(locationPoint.latitude), longitude: Double(locationPoint.longitude)), title: "订单信息", subtitle: "", orderIds: item.orderIds)
+			let orderAnnotation = OrderAnnotation(CLLocationCoordinate2D.init(latitude: Double(locationPoint.latitude), longitude: Double(locationPoint.longitude)), title: "订单信息", subtitle: "", address: item.response.pois[0].address, orderIds: item.orderIds)
             self.mapView.addAnnotation(orderAnnotation)
         }
     }

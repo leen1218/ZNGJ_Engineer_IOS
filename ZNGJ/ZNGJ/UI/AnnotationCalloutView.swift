@@ -10,6 +10,7 @@ import Foundation
 
 class AnnotationCalloutView : UIView {
     var orderIds: [Int] = []
+	var orderAddress: String?
     weak var delegate: CalloutViewDelegate!
     
     override init(frame: CGRect) {
@@ -23,17 +24,35 @@ class AnnotationCalloutView : UIView {
         super.init(coder: coder)
     }
     
-    func setOrderId(_ orderIds: [Int]) {
+	func setOrderId(_ orderIds: [Int], address: String) {
         self.orderIds = orderIds
-        
-        // currently add a uilabel, for testing purpose
-//        let label = UILabel.init(frame: self.bounds)
-//        label.text = "智能管家"
-//        self.addSubview(label)
-        
-        // tap event handling
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
-//        self.addGestureRecognizer(tap)
+		self.orderAddress = address
+		
+		// 订单地址
+		let label = UILabel.init()
+		label.text = self.orderAddress
+		label.frame = CGRect.init(x: 0, y: 10, width: self.frame.width, height: 15)
+		label.textAlignment = .center
+		label.font = UIFont.boldSystemFont(ofSize: 17)
+		self.addSubview(label)
+		
+		// 订单个数
+		if self.orderIds.count > 1 {
+			let label = UILabel.init()
+			label.text = "该区域共有" + String(self.orderIds.count) + "个订单"
+			label.frame = CGRect.init(x: 0, y: 30, width: self.frame.width, height: 15)
+			label.textAlignment = .center
+			label.font = UIFont.boldSystemFont(ofSize: 13)
+			self.addSubview(label)
+		} else {
+			// 订单任务
+			let label = UILabel.init()
+			label.text = UserModel.SharedUserModel().orderManager.getOrderByID(orderID: self.orderIds[0])?.orderProduction
+			label.frame = CGRect.init(x: 0, y: 25, width: self.frame.width, height: 15)
+			label.textAlignment = .center
+			label.font = UIFont.boldSystemFont(ofSize: 17)
+			self.addSubview(label)
+		}
     }
     
     func handleTap(sender: UITapGestureRecognizer) {

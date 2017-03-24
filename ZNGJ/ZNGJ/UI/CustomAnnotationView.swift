@@ -15,6 +15,7 @@ class CustomAnnotationView : MAPinAnnotationView, UIPopoverPresentationControlle
     weak var delegate: CalloutViewDelegate!
     
     var orderIds: [Int] = []
+	var orderAddress: String?
     
     override init(annotation: MAAnnotation, reuseIdentifier: String) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -30,18 +31,19 @@ class CustomAnnotationView : MAPinAnnotationView, UIPopoverPresentationControlle
     }
 
     
-    func setOrderId(_ orderIds: [Int], _ delegate: CalloutViewDelegate) {
+	func setOrdersInfo(_ orderIds: [Int], _ delegate: CalloutViewDelegate, address: String) {
         self.orderIds = orderIds
         self.delegate = delegate
+		self.orderAddress = address
     }
     
     func handleAnnotationViewTap(sender: UITapGestureRecognizer) {
         Logger.logToConsole("handleAnnotationViewTap")
-        let calloutWidth = 100
-        let calloutHeight = 100
+        let calloutWidth = 150
+        let calloutHeight = 55
         // we should present the callout view here with popover
         let calloutView = AnnotationCalloutView.init(frame: CGRect.init(x: 0, y: 0, width: calloutWidth, height: calloutHeight))
-        calloutView.setOrderId(self.orderIds)
+        calloutView.setOrderId(self.orderIds, address: self.orderAddress!)
         calloutView.delegate = self.delegate
         
         // Present the view controller using the popover style.
